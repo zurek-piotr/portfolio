@@ -5,5 +5,5 @@ My personal portfolio
 
 ```
 npm
-npm serve
+npm run serve
 ```
