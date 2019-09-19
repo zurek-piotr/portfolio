@@ -1,13 +1,18 @@
 <template v-cloak>
-  <HeroSection />
+  <div>
+    <HeroSection />
+    <About />
+  </div>
 </template>
 
 <script>
 import HeroSection from './views/HeroSection.vue';
+import About from './views/About.vue';
 
 export default {
   components: {
     HeroSection,
+    About,
   },
 };
 </script>
