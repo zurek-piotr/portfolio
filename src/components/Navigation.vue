@@ -1,12 +1,14 @@
 <template>
   <div class="Navigation">
     <a href="#" class="Navigation__link">O mnie</a>
-    <a href="#" class="Navigation__link">Projektu</a>
+    <a href="#" class="Navigation__link">Projekty</a>
     <a href="#" class="Navigation__link">Kontakt</a>
   </div>
 </template>
 
 <style lang="scss" scoped >
+@import "../styles/globalVariables.scss";
+
 .Navigation {
   position: absolute;
   top: 60px;
@@ -19,6 +21,12 @@
     font-weight: 400;
     text-decoration: none;
     color: black;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+      text-decoration-color: $solid-color;
+    }
   }
 }
 </style>

@@ -1,10 +1,13 @@
 <template>
   <div>
-    <Navigation/>
+    <Navigation />
     <div class="HeroSection">
       <div class="HeroSection__textWrapper">
-        <h1 class="HeroSection__textWrapper__header">Piotr <br/>Żurek</h1>
-        <h2 class="HeroSection__textWrapper__subheader">{{subheader}}</h2>
+        <h1 class="HeroSection__textWrapper__header">
+          Piotr
+          <br />Żurek
+        </h1>
+        <p class="HeroSection__textWrapper__subheader">{{subheader}}</p>
       </div>
       <div class="logo"></div>
     </div>
@@ -28,12 +31,8 @@ export default {
 </script>
 
 <style lang="scss" scoped >
-$primary_color: linear-gradient(
-  167.96deg,
-  #e8ea97 0%,
-  #dce481 51.04%,
-  #dff079 100%
-);
+@import "../styles/globalVariables.scss";
+
 $headerFontSize: 130px;
 .HeroSection {
   display: flex;
@@ -71,16 +70,17 @@ $headerFontSize: 130px;
   height: 85vh;
   width: 30vw;
   margin-right: 15vw;
-}
-.logo::before {
-  content: "";
-  position: absolute;
-  background: $primary_color;
-  top: 0;
-  right: 0;
-  height: 100vh;
-  width: 65vw;
-  clip-path: circle(67.7% at 64% 18%);
-  z-index: -1;
+
+  &:before {
+    content: "";
+    position: absolute;
+    background: $primary_color;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 65vw;
+    clip-path: circle(67.7% at 64% 18%);
+    z-index: -1;
+  }
 }
 </style>
