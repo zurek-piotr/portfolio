@@ -8,9 +8,9 @@
         można by rzec pełnoprawny informatyk, gdyż sieć, administracja,
         bezpieczeństwo, helpdesk oraz programowanie nie jest mi obce.
         <br />
-        <br />By nie zostać człowiekiem orkiestrą skupiam się na dziedzinie najbliżej mojemu sercu
+        <br />By nie zostać człowiekiem orkiestrą skupiam się na dziedzinie najbliższej mojemu sercu
       </p>
-      <span class="About__programming">Programowaniu ❤</span>
+      <span class="About__programming">Programowaniu</span>
     </div>
   </div>
 </template>
@@ -31,29 +31,29 @@
 .Me {
   position: relative;
   background: url(../assets/me.png) center/contain no-repeat;
-  width: 30vw;
-  height: 70vh;
-  margin-left: 10vw;
+  width: 480px;
+  height: 600px;
+  margin-left: 15vw;
 
   &::before {
     content: "";
     position: absolute;
     z-index: -1;
     background: $primary-color;
-    top: 20vh;
-    left: -1vw;
-    height: 70vh;
-    width: 30vw;
+    bottom: 48px;
+    left: -105px;
+    height: 400px;
+    width: 400px;
     border: 2px dotted black;
     border-radius: 50px;
     will-change: transform;
-    transform: rotate(-20deg);
+    transform: rotate(21deg);
   }
 }
 .About {
   display: flex;
   flex-direction: column;
-  width: 40vw;
+  width: 45vw;
   margin-right: 50px;
 
   &__header {
@@ -75,6 +75,11 @@
     font-weight: bold;
     font-size: 48px;
     align-self: center;
+
+    &::after {
+      content: " ❤";
+      color: red;
+    }
   }
 }
 </style>
