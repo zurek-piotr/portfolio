@@ -2,17 +2,20 @@
   <div>
     <HeroSection />
     <About />
+    <Projects />
   </div>
 </template>
 
 <script>
 import HeroSection from './views/HeroSection.vue';
 import About from './views/About.vue';
+import Projects from './views/Projects.vue';
 
 export default {
   components: {
     HeroSection,
     About,
+    Projects,
   },
 };
 </script>

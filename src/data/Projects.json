@@ -1,0 +1,55 @@
+[{
+        "logo": "ipagro",
+        "title": "IpAgro",
+        "description": {
+            "pl": "Katalog produktów budowlanych, rolniczych oraz użytkowych.",
+            "en": "ewd"
+        },
+        "skills": {
+            "isVisible": false,
+            "pl": "Moje portfolio frontend developera.",
+            "en": "ewd"
+        },
+        "buttons": [{
+            "name": "link",
+            "link": "http://ipagro.pl"
+        }]
+    },
+    {
+        "logo": "localVideoPlayer",
+        "title": "Local VideoPlayer",
+        "description": {
+            "pl": "Odtwarzacz lokalnych plików video bazujący na HTML5.",
+            "en": "ewd"
+        },
+        "skills": {
+            "isVisible": false,
+            "pl": "<h2>Wykorzystane umiejętności:</h2><br/><ul class='projects__project__skillsWrapper__content__list'><li class='projects__project__skillsWrapper__content__list__element'>FileReader</li><li class='projects__project__skillsWrapper__content__list__element'>Asynchroniczny kod Javascript (Async/Await)</li><li class='projects__project__skillsWrapper__content__list__element'>Semantyczny kod HTML5 (video tag)</li><li class='projects__project__skillsWrapper__content__list__element'>Optymalizacja upload'u plików (readAsArrayBuffer - wspiera pliki powyżej 2GB)</li><li class='projects__project__skillsWrapper__content__list__element'>Usprawnienia w dostępności (skróty klawiszowe)</li></ul>",
+            "en": "ewd"
+        },
+        "buttons": [{
+            "name": "link",
+            "link": "http://zurek.ct8.pl"
+        }, {
+            "name": "github",
+            "link": "https://github.com/zurek-piotr"
+        }]
+    },
+    {
+        "logo": "logo",
+        "title": "Portfolio",
+        "description": {
+            "pl": "Moje portfolio frontend developera.",
+            "en": "ewd"
+        },
+        "skills": {
+            "isVisible": false,
+            "pl": "Moje portfolio frontend developera.",
+            "en": "ewd"
+        },
+        "buttons": [{
+            "name": "github",
+            "link": "https://github.com/zurek-piotr"
+        }]
+    }
+]
