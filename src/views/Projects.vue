@@ -23,6 +23,7 @@
         </div>
         <div class="projects__project__links">
           <a
+            class="projects__project__links__link"
             v-for="button in project.buttons"
             :key="button.name"
             :href="button.link"
@@ -175,8 +176,13 @@ export default {
       text-align: center;
     }
     &__links {
-      display: flex;
+      display: inline-flex;
       justify-content: center;
+      &__link {
+        width: 50px;
+        height: 50px;
+        margin: 0 25px;
+      }
     }
     &__skillsWrapper {
       background: $primary-color;
@@ -234,7 +240,6 @@ export default {
   background: center/contain no-repeat;
   width: 50px;
   height: 50px;
-  margin: 0 25px;
   cursor: pointer;
 
   &::after {
@@ -265,6 +270,7 @@ export default {
 
   &.skills {
     background-image: url(../assets/skills.svg);
+    margin: 0 25px;
 
     &::after {
       content: "Skills";
