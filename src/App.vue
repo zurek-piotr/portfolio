@@ -4,6 +4,7 @@
     <About />
     <Projects />
     <Contact />
+    <Footer />
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import HeroSection from './views/HeroSection.vue';
 import About from './views/About.vue';
 import Projects from './views/Projects.vue';
 import Contact from './views/Contact.vue';
+import Footer from './views/Footer.vue';
 
 export default {
   components: {
@@ -19,6 +21,7 @@ export default {
     About,
     Projects,
     Contact,
+    Footer,
   },
 };
 </script>
