@@ -7,8 +7,6 @@
 </template>
 
 <style lang="scss" scoped >
-@import "../styles/globalVariables.scss";
-
 .Navigation {
   position: absolute;
   top: 60px;

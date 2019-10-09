@@ -7,7 +7,7 @@
           Piotr
           <br />Żurek
         </h1>
-        <p class="HeroSection__textWrapper__subheader">{{subheader}}</p>
+        <p class="HeroSection__textWrapper__subheader">{{ subheader }}</p>
       </div>
       <div class="logo"></div>
     </div>
@@ -31,8 +31,6 @@ export default {
 </script>
 
 <style lang="scss" scoped >
-@import "../styles/globalVariables.scss";
-
 $headerFontSize: 130px;
 .HeroSection {
   display: flex;
@@ -74,7 +72,7 @@ $headerFontSize: 130px;
   &:before {
     content: "";
     position: absolute;
-    background: $primary_color;
+    background: $primary-color;
     top: 0;
     right: 0;
     height: 100vh;

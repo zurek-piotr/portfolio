@@ -8,7 +8,8 @@
         można by rzec pełnoprawny informatyk, gdyż sieć, administracja,
         bezpieczeństwo, helpdesk oraz programowanie nie jest mi obce.
         <br />
-        <br />By nie zostać człowiekiem orkiestrą skupiam się na dziedzinie najbliższej mojemu sercu
+        <br />By nie zostać człowiekiem orkiestrą skupiam się na dziedzinie
+        najbliższej mojemu sercu
       </p>
       <span class="About__programming">Programowaniu</span>
     </div>
@@ -17,8 +18,6 @@
 
 
 <style lang="scss" scoped >
-@import "../styles/globalVariables.scss";
-
 .AboutWrapper {
   margin-top: 10vh;
   display: flex;

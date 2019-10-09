@@ -100,7 +100,6 @@ export default {
 </script>
 
 <style lang="scss" scoped >
-@import "../styles/globalVariables.scss";
 .projectWrapper {
   display: flex;
   flex-direction: column;
@@ -180,7 +179,7 @@ export default {
       justify-content: center;
     }
     &__skillsWrapper {
-      background: $primary_color;
+      background: $primary-color;
       position: absolute;
       width: 100%;
       height: 120%;
