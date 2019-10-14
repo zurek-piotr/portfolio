@@ -1,13 +1,13 @@
 <template>
   <div>
     <Navigation />
-    <div class="HeroSection">
-      <div class="HeroSection__textWrapper">
-        <h1 class="HeroSection__textWrapper__header">
+    <div class="heroSection">
+      <div class="heroSection__textWrapper">
+        <h1 class="heroSection__textWrapper__header">
           Piotr
           <br />Żurek
         </h1>
-        <p class="HeroSection__textWrapper__subheader">{{ subheader }}</p>
+        <p class="heroSection__textWrapper__subheader">{{ subheader }}</p>
       </div>
       <div class="logo"></div>
     </div>
@@ -32,7 +32,7 @@ export default {
 
 <style lang="scss" scoped >
 $headerFontSize: 130px;
-.HeroSection {
+.heroSection {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -64,7 +64,7 @@ $headerFontSize: 130px;
 }
 .logo {
   display: flex;
-  background: url(../assets/logo.svg) center/contain no-repeat;
+  background: url(../assets/projectsSrc/logo.svg) center/contain no-repeat;
   height: 85vh;
   width: 30vw;
   margin-right: 15vw;

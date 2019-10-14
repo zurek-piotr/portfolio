@@ -27,7 +27,7 @@ export default {
   background: $solid-color;
 
   &__logo {
-    background: url(../assets/logo.svg) center/contain no-repeat;
+    background: url(../assets/projectsSrc/logo.svg) center/contain no-repeat;
     width: 57px;
     height: 95px;
   }

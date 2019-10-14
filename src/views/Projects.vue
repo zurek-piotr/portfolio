@@ -1,6 +1,7 @@
 <template>
   <div class="projectWrapper">
     <h2 class="header">Projekty</h2>
+
     <div class="projects" :style="gridColumnsCount">
       <div
         class="projects__project"
@@ -11,22 +12,28 @@
           class="projects__project__logo"
           :style="{
             backgroundImage:
-              'url(' + require('../assets/' + project.logo + '.svg') + ')'
+              'url(' +
+              require('../assets/projectsSrc/' + project.logo + '.svg') +
+              ')'
           }"
         ></div>
+
         <div class="projects__project__title">{{ project.title }}</div>
+
         <div class="projects__project__description" v-if="CheckLanguage()">
           {{ project.description.pl }}
         </div>
         <div class="projects__project__description" v-else>
           {{ project.description.en }}
         </div>
+
         <div class="projects__project__links">
           <a
             class="projects__project__links__link"
             v-for="button in project.buttons"
             :key="button.name"
             :href="button.link"
+            target="_blank"
           >
             <div class="button" :class="button.name"></div>
           </a>
@@ -35,6 +42,7 @@
             @click="project.skills.isVisible = true"
           ></div>
         </div>
+
         <div
           class="projects__project__skillsWrapper"
           v-show="project.skills.isVisible"
@@ -191,8 +199,19 @@ export default {
       height: 120%;
       padding: 30px 10px 10px 10px;
       border-radius: 25px;
-      border: 2px dotted black;
       font-weight: 400;
+
+      &::before {
+        position: absolute;
+        content: "";
+        background: url(../assets/patterns/stripes.svg);
+        width: 100%;
+        height: 100%;
+        bottom: -25px;
+        left: -25px;
+        z-index: -1;
+        border-radius: 25px;
+      }
 
       &__content {
         margin-top: 10px;
@@ -209,7 +228,7 @@ export default {
 
       &__closeIcon {
         position: absolute;
-        right: 3px;
+        right: 10px;
         top: 20px;
         padding: 5px;
         width: 25px;
@@ -253,7 +272,7 @@ export default {
   }
 
   &.github {
-    background-image: url(../assets/github_logo.svg);
+    background-image: url(../assets/projectsSrc/github_logo.svg);
 
     &::after {
       content: "Source";
@@ -261,7 +280,7 @@ export default {
   }
 
   &.link {
-    background-image: url(../assets/webIcon.svg);
+    background-image: url(../assets/projectsSrc/webIcon.svg);
 
     &::after {
       content: "Link";
@@ -269,7 +288,7 @@ export default {
   }
 
   &.skills {
-    background-image: url(../assets/skills.svg);
+    background-image: url(../assets/projectsSrc/skills.svg);
     margin: 0 25px;
 
     &::after {

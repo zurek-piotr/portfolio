@@ -15,7 +15,7 @@
   justify-content: space-between;
   &__link {
     margin-right: 20px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     text-decoration: none;
     color: black;

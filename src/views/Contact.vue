@@ -36,6 +36,14 @@
   min-height: 100vh;
   background: $solid-color;
 
+  &__form {
+    width: 500px;
+    height: 650px;
+    background: #fff;
+    align-self: center;
+    margin: 50px 100px 0 0;
+  }
+
   &__info {
     padding: 80px 70px;
     width: 550px;
@@ -68,15 +76,8 @@
       }
     }
   }
-
-  &__form {
-    width: 500px;
-    height: 650px;
-    background: #fff;
-    align-self: center;
-    margin: 50px 100px 0 0;
-  }
 }
+
 .button {
   position: relative;
   background: center/contain no-repeat;
@@ -94,13 +95,13 @@
   }
 
   &.phone {
-    background-image: url(../assets/phoneIcon.svg);
+    background-image: url(../assets/contactSrc/phoneIcon.svg);
   }
   &.email {
-    background-image: url(../assets/emailIcon.svg);
+    background-image: url(../assets/contactSrc/emailIcon.svg);
   }
   &.linkedin {
-    background-image: url(../assets/linkedinIcon.svg);
+    background-image: url(../assets/contactSrc/linkedinIcon.svg);
     &::after {
       content: "LinkedIn";
     }
