@@ -49,6 +49,14 @@ html {
   box-sizing: inherit;
 }
 
+input,
+textarea,
+select,
+button,
+::placeholder {
+  font-family: inherit;
+}
+
 [v-cloak] {
   display: hidden;
 }
