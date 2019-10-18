@@ -19,21 +19,28 @@ export default {
 
 <style lang="scss" scoped >
 .footer {
-  padding-top: 5vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 5vh;
   background: $solid-color;
 
   &__logo {
-    background: url(../assets/projectsSrc/logo.svg) center/contain no-repeat;
-    width: 57px;
     height: 95px;
+    width: 57px;
+    background: url(../assets/projectsSrc/logo.svg) center/contain no-repeat;
   }
   &__info {
     font-size: 14px;
     margin: 20px 0;
+  }
+}
+@media screen and (min-width: 2560px) {
+  .footer {
+    &__info {
+      font-size: 24px;
+    }
   }
 }
 </style>

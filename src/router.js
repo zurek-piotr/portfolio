@@ -4,9 +4,40 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-    },
+  mode: 'history',
+  afterEach(to, from) {
+    console.log(to, from);
+    window.history.pushState('', '', '/');
+  },
+  routes: [{
+    path: '/',
+  },
+  {
+    path: '/about',
+    redirect: '/#about',
+  },
+  {
+    path: '/omnie',
+    redirect: '/#about',
+  }, {
+    path: '/o-mnie',
+    redirect: '/#about',
+  },
+  {
+    path: '/projects',
+    redirect: '/#projects',
+  },
+  {
+    path: '/projekty',
+    redirect: '/#projects',
+  },
+  {
+    path: '/contact',
+    redirect: '/#contact',
+  },
+  {
+    path: '/kontakt',
+    redirect: '/#contact',
+  },
   ],
 });

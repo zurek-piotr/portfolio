@@ -82,10 +82,10 @@ export default {
       const config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
 
       this.axios.post(this.API, formData, config)
-        .then(this.successMessage())
+        .then(this.showSuccessMessage())
         .catch(err => console.error(err));
     },
-    successMessage() {
+    showSuccessMessage() {
       this.message = '';
       this.email = '';
       this.switchVisibility();
@@ -102,17 +102,53 @@ export default {
 <style lang="scss" scoped >
 .contact {
   display: flex;
-  justify-content: space-between;
-  margin-top: 10vh;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
   min-height: 100vh;
+  width: 100%;
+  padding-top: 10vh;
   background: $solid-color;
 
+  &__info {
+    width: 80vw;
+    padding: 80px 70px;
+
+    &__header {
+      font-size: 72px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    &__description {
+      margin-top: 80px;
+      font-size: 36px;
+      font-weight: 400;
+    }
+
+    &__links {
+      margin-top: 80px;
+
+      &__link {
+        display: flex;
+        flex-direction: row;
+        margin-top: 30px;
+        font-size: 36px;
+        font-weight: 400;
+        text-decoration: none;
+
+        &[href] {
+          color: #000;
+        }
+      }
+    }
+  }
+
   &__form {
-    width: 500px;
-    height: 650px;
+    width: 80vw;
+    margin-bottom: 50px;
     background: #fff;
     align-self: center;
-    margin: 50px 100px 0 0;
 
     &__message {
       display: flex;
@@ -124,42 +160,9 @@ export default {
 
       &__header {
         width: 80%;
+        padding-top: 50px;
         font-weight: bold;
         font-size: 24px;
-        padding-top: 50px;
-      }
-    }
-  }
-
-  &__info {
-    padding: 80px 70px;
-    width: 550px;
-
-    &__header {
-      font-size: 48px;
-      font-weight: bold;
-    }
-    &__description {
-      margin-top: 80px;
-      font-size: 36px;
-      font-weight: 400;
-    }
-    &__links {
-      margin-top: 100px;
-      display: inline-block;
-
-      &__link {
-        margin-top: 30px;
-        font-size: 36px;
-        font-weight: 400;
-        text-decoration: none;
-        display: inline-flex;
-        flex-direction: row;
-        align-items: center;
-
-        &[href] {
-          color: #000;
-        }
       }
     }
   }
@@ -168,25 +171,27 @@ export default {
 .button {
   position: relative;
   background: center/contain no-repeat;
-  width: 50px;
   height: 50px;
+  width: 50px;
   margin-right: 25px;
   cursor: pointer;
 
   &::after {
     position: absolute;
-    font-size: 36px;
-    left: 75px;
     top: 50%;
+    left: 75px;
+    font-size: 36px;
     transform: translateY(-50%);
   }
 
   &.phone {
     background-image: url(../assets/contactSrc/phoneIcon.svg);
   }
+
   &.email {
     background-image: url(../assets/contactSrc/emailIcon.svg);
   }
+
   &.linkedin {
     background-image: url(../assets/contactSrc/linkedinIcon.svg);
     &::after {
@@ -204,22 +209,24 @@ export default {
   &__email,
   &__message {
     width: 80%;
+    padding: 15px;
+    margin-top: 50px;
     background: #e5f6e7;
     border-bottom: 2px solid black;
     border-style: none none solid none;
-    margin-top: 50px;
-    padding: 15px;
     font-size: 18px;
 
     &::placeholder {
+      padding: 15px;
       font-size: 18px;
       text-align: left;
-      padding: 15px;
     }
+
     &:focus::placeholder {
       opacity: 0;
       transition: opacity 0.5s ease-out;
     }
+
     &:focus {
       border-color: $solid-color;
       transition: border-color 0.5s ease-out;
@@ -230,20 +237,20 @@ export default {
     height: 35px;
   }
   &__message {
-    resize: none;
     height: 350px;
+    resize: none;
   }
 
   &__send {
-    width: 120px;
     height: 40px;
-    margin-top: 25px;
+    width: 120px;
+    margin: 25px 0;
     border: 2px solid $solid-color;
     background-color: white;
-    cursor: pointer;
     will-change: tansition;
     transition: background-color 0.5s ease-in-out, border-color 0.5s ease-in;
     font-weight: bold;
+    cursor: pointer;
 
     &:hover,
     &:focus {
@@ -256,6 +263,127 @@ export default {
     margin-top: 80px;
     width: 80%;
     height: 80px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .contact {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+    &__info {
+      width: 40vw;
+      padding: 0 50px;
+
+      &__header {
+        font-size: 48px;
+        text-align: left;
+      }
+      &__description {
+        font-size: 24px;
+      }
+      &__links {
+        &__link {
+          font-size: 24px;
+        }
+      }
+    }
+
+    &__form {
+      width: 60vw;
+      margin-right: 50px;
+    }
+  }
+
+  .button {
+    height: 30px;
+    width: 30px;
+
+    &.linkedin {
+      &::after {
+        font-size: 24px;
+        left: calc(100% + 25px);
+      }
+    }
+  }
+
+  .gform {
+    &__message {
+      height: 50vh;
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .contact {
+    &__info {
+      width: 55vw;
+      padding: 0 30px 0 100px;
+
+      &__links {
+        &__link {
+          font-size: 28px;
+        }
+      }
+    }
+
+    &__form {
+      width: 45vw;
+      margin-right: 100px;
+    }
+  }
+
+  .button {
+    height: 40px;
+    width: 40px;
+
+    &.linkedin {
+      &::after {
+        font-size: 28px;
+        left: calc(100% + 25px);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .contact {
+    &__info {
+      width: 50vw;
+
+      &__header {
+        font-size: 80px;
+      }
+
+      &__description {
+        font-size: 48px;
+      }
+
+      &__links {
+        &__link {
+          font-size: 52px;
+        }
+      }
+    }
+
+    &__form {
+      height: 80vh;
+      width: 40vw;
+      margin-right: 5vw;
+    }
+  }
+
+  .button {
+    height: 70px;
+    width: 70px;
+    margin-right: 50px;
+
+    &.linkedin {
+      &::after {
+        font-size: 52px;
+        left: calc(100% + 50px);
+      }
+    }
   }
 }
 </style>

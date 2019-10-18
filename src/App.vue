@@ -1,9 +1,9 @@
 <template v-cloak>
   <div>
     <HeroSection />
-    <About />
-    <Projects />
-    <Contact />
+    <About id="about" />
+    <Projects id="projects" />
+    <Contact id="contact" />
     <Footer />
   </div>
 </template>
@@ -42,6 +42,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
 }
 
 *::after,

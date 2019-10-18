@@ -2,7 +2,7 @@
   <div class="projectWrapper">
     <h2 class="header">Projekty</h2>
 
-    <div class="projects" :style="gridColumnsCount">
+    <div class="projects" :style="getGridColumnsCount()">
       <div
         class="projects__project"
         v-for="project in projectData"
@@ -20,7 +20,7 @@
 
         <div class="projects__project__title">{{ project.title }}</div>
 
-        <div class="projects__project__description" v-if="CheckLanguage()">
+        <div class="projects__project__description" v-if="isPolishLanguage()">
           {{ project.description.pl }}
         </div>
         <div class="projects__project__description" v-else>
@@ -46,7 +46,7 @@
         <div
           class="projects__project__skillsWrapper"
           v-show="project.skills.isVisible"
-          v-if="CheckLanguage()"
+          v-if="isPolishLanguage()"
         >
           <div
             class="projects__project__skillsWrapper__closeIcon"
@@ -78,31 +78,33 @@
 
 <script>
 import projectData from '../data/Projects.json';
+import isPolishLanguage from '../scripts/Helpers';
 
 export default {
   data() {
     return {
       projectData,
+      gridColumnsCount: 1,
     };
   },
   methods: {
-    CheckLanguage() {
-      if (navigator.language !== 'pl-PL') {
-        return false;
+    isPolishLanguage,
+    getGridColumnsCount() {
+      if (window.innerWidth < 768) {
+        this.gridColumnsCount = 1;
+      } else if (window.innerWidth < 1024 || projectData.length % 2 === 0) {
+        this.gridColumnsCount = 2;
+      } else {
+        this.gridColumnsCount = 3;
       }
-      return true;
+      return `grid-template-columns: repeat(${this.gridColumnsCount}, 1fr)`;
     },
   },
-  computed: {
-    gridColumnsCount() {
-      let count;
-      if (projectData.length % 2 === 0) {
-        count = 2;
-      } else {
-        count = 3;
-      }
-      return `grid-template-columns: repeat(${count}, 1fr)`;
-    },
+  created() {
+    window.addEventListener('resize', this.getGridColumnsCount);
+  },
+  destroyed() {
+    window.addEventListener('resize', this.getGridColumnsCount);
   },
 };
 
@@ -119,14 +121,14 @@ export default {
   min-height: 100vh;
 }
 .header {
-  font-size: 72px;
   text-transform: uppercase;
   text-align: center;
+  font-size: 48px;
   font-weight: bold;
 }
 .projects {
   display: grid;
-  grid-gap: 100px 100px;
+  grid-gap: 150px 100px;
   margin: 100px 50px;
 
   &__project {
@@ -139,35 +141,35 @@ export default {
 
     &__logo {
       position: relative;
-      background: center/50% no-repeat;
       height: 150px;
       width: 150px;
+      background: center/50% no-repeat;
       border: 1px dotted;
       border-radius: 50%;
 
       &::before {
         position: absolute;
         content: "";
-        z-index: -2;
-        width: 0;
         height: 0;
-        border-style: solid;
-        border-width: 0 0 190px 140px;
-        border-color: transparent transparent $solid-color transparent;
+        width: 0;
         bottom: 0;
         right: -15px;
+        border-color: transparent transparent $solid-color transparent;
+        border-style: solid;
+        border-width: 0 0 190px 140px;
+        z-index: -2;
       }
 
       &::after {
         position: absolute;
         content: "";
-        z-index: -1;
+        height: 100%;
+        width: 100%;
         background: rgba(255, 255, 255, 0.01);
         box-shadow: inset 0px 0px 50px #ffffff;
         backdrop-filter: blur(20px);
-        height: 100%;
-        width: 100%;
         border-radius: 50%;
+        z-index: -1;
       }
     }
 
@@ -186,17 +188,18 @@ export default {
     &__links {
       display: inline-flex;
       justify-content: center;
+
       &__link {
-        width: 50px;
         height: 50px;
+        width: 50px;
         margin: 0 25px;
       }
     }
     &__skillsWrapper {
-      background: $primary-color;
       position: absolute;
-      width: 100%;
       height: 120%;
+      width: 100%;
+      background: $primary-color;
       padding: 30px 10px 10px 10px;
       border-radius: 25px;
       font-weight: 400;
@@ -205,12 +208,12 @@ export default {
         position: absolute;
         content: "";
         background: url(../assets/patterns/stripes.svg);
-        width: 100%;
         height: 100%;
+        width: 100%;
         bottom: -25px;
         left: -25px;
-        z-index: -1;
         border-radius: 25px;
+        z-index: -1;
       }
 
       &__content {
@@ -218,8 +221,9 @@ export default {
         text-align: center;
 
         &::v-deep &__list {
-          margin: 20px 40px;
           list-style: circle;
+          margin: 20px 40px;
+
           &__element {
             margin: 15px 0;
           }
@@ -228,19 +232,19 @@ export default {
 
       &__closeIcon {
         position: absolute;
-        right: 10px;
-        top: 20px;
-        padding: 5px;
-        width: 25px;
         height: 25px;
+        width: 25px;
+        top: 20px;
+        right: 10px;
+        padding: 5px;
         cursor: pointer;
 
         &::before,
         &::after {
           position: absolute;
           content: "";
-          width: 25px;
           height: 5px;
+          width: 25px;
           background: black;
           border-radius: 10px;
         }
@@ -293,6 +297,36 @@ export default {
 
     &::after {
       content: "Skills";
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header {
+    font-size: 72px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .projectWrapper {
+    margin-top: 10px;
+  }
+  .header {
+    font-size: 100px;
+  }
+  .projects {
+    &__project {
+      &__title {
+        font-size: 38px;
+      }
+
+      &__description {
+        font-size: 30px;
+      }
+
+      &__skillsWrapper {
+        font-size: 20px;
+      }
     }
   }
 }
