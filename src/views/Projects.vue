@@ -101,10 +101,7 @@ export default {
       return `grid-template-columns: repeat(${this.gridColumnsCount}, 1fr)`;
     },
   },
-  created() {
-    window.addEventListener('resize', this.getGridColumnsCount);
-  },
-  destroyed() {
+  mounted() {
     window.addEventListener('resize', this.getGridColumnsCount);
   },
 };

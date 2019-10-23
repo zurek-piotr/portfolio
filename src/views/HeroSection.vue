@@ -3,9 +3,20 @@
     <Navigation v-show="screenWidth >= 1024" />
 
     <div class="heroSection">
-      <button class="heroSection__hamburgerMenu" v-show="screenWidth < 1024">
-        <div class="heroSection__hamburgerMenu__inner"></div>
+      <button
+        class="heroSection__hamburgerMenu__button"
+        @click="isOpen = !isOpen"
+        v-show="screenWidth < 1024"
+      >
+        <div
+          :class="['heroSection__hamburgerMenu__inner', { open: isOpen }]"
+        ></div>
       </button>
+      <transition name="slide">
+        <div class="heroSection__hamburgerMenu" v-show="isOpen">
+          <Navigation @changeIsOpen="toggleIsOpen" />
+        </div>
+      </transition>
       <div class="heroSection__textWrapper">
         <h1 class="heroSection__textWrapper__header">
           Piotr
@@ -26,6 +37,7 @@ export default {
     return {
       subheader: '<FrontendDeveloper />',
       screenWidth: window.innerWidth,
+      isOpen: false,
     };
   },
   components: {
@@ -35,11 +47,11 @@ export default {
     setScreenWidth() {
       this.screenWidth = window.innerWidth;
     },
+    toggleIsOpen(data) {
+      this.isOpen = data;
+    },
   },
-  created() {
-    window.addEventListener('resize', this.setScreenWidth);
-  },
-  destroyed() {
+  mounted() {
     window.addEventListener('resize', this.setScreenWidth);
   },
 };
@@ -85,16 +97,27 @@ $headerFontSize: 72px;
   }
 
   &__hamburgerMenu {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    padding: 15px;
-    border: none;
-    background: none;
-    cursor: pointer;
+    position: fixed;
+    display: block;
+    background: white;
+    height: 100vh;
+    width: 100vw;
+
+    &__button {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      padding: 15px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      z-index: 2;
+    }
 
     &__inner {
       position: relative;
+      will-change: transform;
+      transition: transform 0.5s;
 
       &,
       &::before,
@@ -110,6 +133,8 @@ $headerFontSize: 72px;
         content: "";
         top: -7px;
         left: 0;
+        will-change: transform;
+        transition: transform 0.5s;
       }
 
       &::after {
@@ -117,8 +142,41 @@ $headerFontSize: 72px;
         content: "";
         top: 7px;
         left: 0;
+        opacity: 1;
+        will-change: transform;
+        transition: transform 0.3s, opacity 0.3s;
+      }
+
+      &.open {
+        transform: rotate(45deg);
+
+        &::before {
+          transform: translateY(7px) rotate(90deg);
+        }
+
+        &::after {
+          transform: translateY(-7px);
+          opacity: 0;
+        }
       }
     }
+  }
+}
+
+.slide-enter-active {
+  animation: slide-in 0.4s;
+}
+
+.slide-leave-active {
+  animation: slide-in 0.3s reverse;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
   }
 }
 
