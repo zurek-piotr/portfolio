@@ -43,35 +43,42 @@
             @click="project.skills.isVisible = true"
           ></div>
         </div>
-
-        <div
-          class="projects__project__skillsWrapper"
-          v-show="project.skills.isVisible"
-          v-if="isPolishLanguage()"
-        >
+        <transition name="projects__project__skillsWrapper">
           <div
-            class="projects__project__skillsWrapper__closeIcon"
-            @click="project.skills.isVisible = false"
-          ></div>
+            :class="[
+              'projects__project__skillsWrapper',
+              { open: project.skills.isVisible }
+            ]"
+            v-show="project.skills.isVisible"
+            v-if="isPolishLanguage()"
+          >
+            <div
+              class="projects__project__skillsWrapper__closeIcon"
+              @click="project.skills.isVisible = false"
+            ></div>
+            <div
+              class="projects__project__skillsWrapper__content"
+              v-html="project.skills.pl"
+            ></div>
+          </div>
           <div
-            class="projects__project__skillsWrapper__content"
-            v-html="project.skills.pl"
-          ></div>
-        </div>
-        <div
-          class="projects__project__skillsWrapper"
-          v-show="project.skills.isVisible"
-          v-else
-        >
-          <div
-            class="projects__project__skillsWrapper__closeIcon"
-            @click="project.skills.isVisible = false"
-          ></div>
-          <div
-            class="projects__project__skillsWrapper__content"
-            v-html="project.skills.en"
-          ></div>
-        </div>
+            :class="[
+              'projects__project__skillsWrapper',
+              { open: project.skills.isVisible }
+            ]"
+            v-show="project.skills.isVisible"
+            v-else
+          >
+            <div
+              class="projects__project__skillsWrapper__closeIcon"
+              @click="project.skills.isVisible = false"
+            ></div>
+            <div
+              class="projects__project__skillsWrapper__content"
+              v-html="project.skills.en"
+            ></div>
+          </div>
+        </transition>
       </div>
     </div>
   </div>
@@ -207,16 +214,51 @@ export default {
       border-radius: 25px;
       font-weight: 400;
 
+      &-enter-active {
+        animation: show 0.3s;
+      }
+      &-leave-active {
+        animation: show 0.3s reverse;
+      }
+
+      @keyframes show {
+        from {
+          transform: scale(0);
+        }
+        to {
+          transform: scale(1);
+        }
+      }
+
       &::before {
         position: absolute;
         content: "";
         background: url(../assets/patterns/stripes.svg);
         height: 100%;
         width: 100%;
-        bottom: -25px;
-        left: -25px;
+        bottom: 0;
+        left: 0;
         border-radius: 25px;
         z-index: -1;
+        animation: 0.5s reverse both slide;
+      }
+
+      &.open {
+        &::before {
+          opacity: 1;
+          animation: 0.5s 0.3s both slide;
+        }
+      }
+
+      @keyframes slide {
+        0% {
+          opacity: 0;
+          transform: translate(0, 0);
+        }
+        100% {
+          opacity: 1;
+          transform: translate(-25px, 25px);
+        }
       }
 
       &__content {
