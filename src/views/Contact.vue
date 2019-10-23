@@ -1,114 +1,121 @@
 <template>
-  <div class="contact">
-    <div class="contact__info">
-      <template v-if="isPolishLanguage()">
-        <h2 class="contact__info__header">Kontakt</h2>
-        <div class="contact__info__description">
-          Jeżeli jesteś zainteresowany współpracą ze mną, zapraszam do kontaktu.
-        </div>
-      </template>
-      <template v-else>
-        <h2 class="contact__info__header">Contact</h2>
-        <div class="contact__info__description">
-          Have a cool project in mind, and think I can help you with it? Feel
-          free to contact me.
-        </div>
-      </template>
-      <div class="contact__info__links">
-        <a class="contact__info__links__link" href="tel:+48502344491"
-          ><div class="button phone"></div>
-          502344491</a
-        >
-        <a
-          class="contact__info__links__link contact__info__links__link--email"
-          href="mailto:piotrzurek97@gmail.com"
-          ><div class="button email"></div>
-          piotrzurek97@gmail.com</a
-        >
-        <a class="contact__info__links__link" target="_blank" href="#"
-          ><div class="button linkedin"></div
-        ></a>
-      </div>
-    </div>
-    <div class="contact__form">
-      <form
-        class="gform"
-        @submit.prevent="onSubmit"
-        method="POST"
-        v-show="visibleForm"
-      >
+  <div class="contactWrapper">
+    <div class="contact">
+      <div class="contact__info">
         <template v-if="isPolishLanguage()">
-          <input
-            id="email"
-            class="gform__email"
-            name="email"
-            type="email"
-            v-model="email"
-            placeholder="Adres email"
-            required
-          />
-          <textarea
-            id="message"
-            class="gform__message"
-            name="message"
-            v-model="message"
-            placeholder="Jak mogę Ci pomóc?"
-            required
-          ></textarea>
-          <button class="gform__send" type="submit">Wyślij</button>
+          <h2 class="contact__info__header">Kontakt</h2>
+          <div class="contact__info__description">
+            Jeżeli jesteś zainteresowany współpracą ze mną, zapraszam do
+            kontaktu.
+          </div>
         </template>
-
         <template v-else>
-          <input
-            id="email"
-            class="gform__email"
-            name="email"
-            type="email"
-            v-model="email"
-            placeholder="Email address"
-            required
-          />
-          <textarea
-            id="message"
-            class="gform__message"
-            name="message"
-            v-model="message"
-            placeholder="How can I help you?"
-            required
-          ></textarea>
-          <button class="gform__send" type="submit">Send</button>
+          <h2 class="contact__info__header">Contact</h2>
+          <div class="contact__info__description">
+            Have a cool project in mind, and think I can help you with it? Feel
+            free to contact me.
+          </div>
         </template>
-      </form>
-      <div
-        class="contact__form__message"
-        v-show="visibleMessage"
-        v-if="isPolishLanguage()"
-      >
-        <h2 class="contact__form__message__header">Dziękuje za kontakt 😊</h2>
-        <br />
-        <button
-          class="gform__send gform__send--message"
-          @click="switchVisibility()"
-        >
-          Wyślij kolejną wiadomość
-        </button>
+        <div class="contact__info__links">
+          <a class="contact__info__links__link" href="tel:+48502344491"
+            ><div class="button phone"></div>
+            502344491</a
+          >
+          <a
+            class="contact__info__links__link contact__info__links__link--email"
+            href="mailto:piotrzurek97@gmail.com"
+            ><div class="button email"></div>
+            piotrzurek97@gmail.com</a
+          >
+          <a class="contact__info__links__link" target="_blank" href="#"
+            ><div class="button linkedin"></div
+          ></a>
+        </div>
       </div>
-      <div class="contact__form__message" v-show="visibleMessage" v-else>
-        <h2 class="contact__form__message__header">Thank you for contact 😊</h2>
-        <br />
-        <button
-          class="gform__send gform__send--message"
-          @click="switchVisibility()"
+      <div class="contact__form">
+        <form
+          class="gform"
+          @submit.prevent="onSubmit"
+          method="POST"
+          v-show="visibleForm"
         >
-          Send another message
-        </button>
+          <template v-if="isPolishLanguage()">
+            <input
+              id="email"
+              class="gform__email"
+              name="email"
+              type="email"
+              v-model="email"
+              placeholder="Adres email"
+              required
+            />
+            <textarea
+              id="message"
+              class="gform__message"
+              name="message"
+              v-model="message"
+              placeholder="Jak mogę Ci pomóc?"
+              required
+            ></textarea>
+            <button class="gform__send" type="submit">Wyślij</button>
+          </template>
+
+          <template v-else>
+            <input
+              id="email"
+              class="gform__email"
+              name="email"
+              type="email"
+              v-model="email"
+              placeholder="Email address"
+              required
+            />
+            <textarea
+              id="message"
+              class="gform__message"
+              name="message"
+              v-model="message"
+              placeholder="How can I help you?"
+              required
+            ></textarea>
+            <button class="gform__send" type="submit">Send</button>
+          </template>
+        </form>
+        <div
+          class="contact__form__message"
+          v-show="visibleMessage"
+          v-if="isPolishLanguage()"
+        >
+          <h2 class="contact__form__message__header">Dziękuje za kontakt 😊</h2>
+          <br />
+          <button
+            class="gform__send gform__send--message"
+            @click="switchVisibility()"
+          >
+            Wyślij kolejną wiadomość
+          </button>
+        </div>
+        <div class="contact__form__message" v-show="visibleMessage" v-else>
+          <h2 class="contact__form__message__header">
+            Thank you for contact 😊
+          </h2>
+          <br />
+          <button
+            class="gform__send gform__send--message"
+            @click="switchVisibility()"
+          >
+            Send another message
+          </button>
+        </div>
       </div>
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 import isPolishLanguage from '../scripts/Helpers';
+import Footer from './Footer.vue';
 
 export default {
   data() {
@@ -143,11 +150,18 @@ export default {
       this.visibleMessage = !this.visibleMessage;
     },
   },
+  components: {
+    Footer,
+  },
 };
 
 </script>
 
 <style lang="scss" scoped >
+.contactWrapper {
+  background: $solid-color;
+}
+
 .contact {
   display: flex;
   flex-direction: column;
@@ -156,7 +170,6 @@ export default {
   min-height: 100vh;
   width: 100%;
   padding-top: 10vh;
-  background: $solid-color;
 
   &__info {
     width: 80vw;
@@ -176,12 +189,14 @@ export default {
 
     &__links {
       margin-top: 80px;
+      width: auto;
 
       &__link {
-        display: flex;
+        display: inline-flex;
         flex-direction: row;
         align-items: center;
         margin-top: 30px;
+        margin-right: 100%;
         font-size: 24px;
         font-weight: 400;
         text-decoration: none;
@@ -265,7 +280,7 @@ export default {
     width: 80%;
     padding: 15px;
     margin-top: 50px;
-    background: #e5f6e7;
+    background: $formBackground-color;
     border-bottom: 2px solid black;
     border-style: none none solid none;
     font-size: 18px;

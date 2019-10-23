@@ -24,7 +24,6 @@ export default {
   justify-content: center;
   align-items: center;
   padding-top: 5vh;
-  background: $solid-color;
 
   &__logo {
     height: 95px;
