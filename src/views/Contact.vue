@@ -20,7 +20,7 @@
           502344491</a
         >
         <a
-          class="contact__info__links__link"
+          class="contact__info__links__link contact__info__links__link--email"
           href="mailto:piotrzurek97@gmail.com"
           ><div class="button email"></div>
           piotrzurek97@gmail.com</a
@@ -163,14 +163,14 @@ export default {
     padding: 80px 70px;
 
     &__header {
-      font-size: 72px;
+      font-size: 60px;
       font-weight: bold;
       text-align: center;
     }
 
     &__description {
       margin-top: 80px;
-      font-size: 36px;
+      font-size: 28px;
       font-weight: 400;
     }
 
@@ -180,10 +180,15 @@ export default {
       &__link {
         display: flex;
         flex-direction: row;
+        align-items: center;
         margin-top: 30px;
-        font-size: 36px;
+        font-size: 24px;
         font-weight: 400;
         text-decoration: none;
+
+        &--email {
+          font-size: 16px;
+        }
 
         &[href] {
           color: #000;
@@ -219,8 +224,8 @@ export default {
 .button {
   position: relative;
   background: center/contain no-repeat;
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: 30px;
   margin-right: 25px;
   cursor: pointer;
 
@@ -228,7 +233,6 @@ export default {
     position: absolute;
     top: 50%;
     left: 75px;
-    font-size: 36px;
     transform: translateY(-50%);
   }
 
@@ -244,6 +248,8 @@ export default {
     background-image: url(../assets/contactSrc/linkedinIcon.svg);
     &::after {
       content: "LinkedIn";
+      font-size: 24px;
+      left: calc(100% + 25px);
     }
   }
 }
@@ -313,6 +319,24 @@ export default {
     height: 80px;
   }
 }
+@media screen and (min-width: 375px) {
+  .contact__info__links__link--email {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .contact__info__links__link--email {
+    font-size: 22px;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .contact__info__links__link--email {
+    font-size: 24px;
+  }
+}
+
 @media screen and (min-width: 1024px) {
   .contact {
     display: flex;
@@ -388,7 +412,6 @@ export default {
     &.linkedin {
       &::after {
         font-size: 28px;
-        left: calc(100% + 25px);
       }
     }
   }
