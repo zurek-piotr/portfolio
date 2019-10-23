@@ -1,10 +1,19 @@
 <template>
   <div class="contact">
     <div class="contact__info">
-      <h2 class="contact__info__header">Kontakt</h2>
-      <div class="contact__info__description">
-        Jeżeli jesteś zainteresowany współpracą ze mną, zapraszam do kontaktu.
-      </div>
+      <template v-if="isPolishLanguage()">
+        <h2 class="contact__info__header">Kontakt</h2>
+        <div class="contact__info__description">
+          Jeżeli jesteś zainteresowany współpracą ze mną, zapraszam do kontaktu.
+        </div>
+      </template>
+      <template v-else>
+        <h2 class="contact__info__header">Contact</h2>
+        <div class="contact__info__description">
+          Have a cool project in mind, and think I can help you with it? Feel
+          free to contact me.
+        </div>
+      </template>
       <div class="contact__info__links">
         <a class="contact__info__links__link" href="tel:+48502344491"
           ><div class="button phone"></div>
@@ -28,26 +37,53 @@
         method="POST"
         v-show="visibleForm"
       >
-        <input
-          id="email"
-          class="gform__email"
-          name="email"
-          type="email"
-          v-model="email"
-          placeholder="Adres email"
-          required
-        />
-        <textarea
-          id="message"
-          class="gform__message"
-          name="message"
-          v-model="message"
-          placeholder="Jak mogę Ci pomóc?"
-          required
-        ></textarea>
-        <button class="gform__send" type="submit">Wyślij</button>
+        <template v-if="isPolishLanguage()">
+          <input
+            id="email"
+            class="gform__email"
+            name="email"
+            type="email"
+            v-model="email"
+            placeholder="Adres email"
+            required
+          />
+          <textarea
+            id="message"
+            class="gform__message"
+            name="message"
+            v-model="message"
+            placeholder="Jak mogę Ci pomóc?"
+            required
+          ></textarea>
+          <button class="gform__send" type="submit">Wyślij</button>
+        </template>
+
+        <template v-else>
+          <input
+            id="email"
+            class="gform__email"
+            name="email"
+            type="email"
+            v-model="email"
+            placeholder="Email address"
+            required
+          />
+          <textarea
+            id="message"
+            class="gform__message"
+            name="message"
+            v-model="message"
+            placeholder="How can I help you?"
+            required
+          ></textarea>
+          <button class="gform__send" type="submit">Send</button>
+        </template>
       </form>
-      <div class="contact__form__message" v-show="visibleMessage">
+      <div
+        class="contact__form__message"
+        v-show="visibleMessage"
+        v-if="isPolishLanguage()"
+      >
         <h2 class="contact__form__message__header">Dziękuje za kontakt 😊</h2>
         <br />
         <button
@@ -57,11 +93,22 @@
           Wyślij kolejną wiadomość
         </button>
       </div>
+      <div class="contact__form__message" v-show="visibleMessage" v-else>
+        <h2 class="contact__form__message__header">Thank you for contact 😊</h2>
+        <br />
+        <button
+          class="gform__send gform__send--message"
+          @click="switchVisibility()"
+        >
+          Send another message
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import isPolishLanguage from '../scripts/Helpers';
 
 export default {
   data() {
@@ -74,6 +121,7 @@ export default {
     };
   },
   methods: {
+    isPolishLanguage,
     onSubmit() {
       const formData = new FormData();
       formData.set('email', this.email);
@@ -317,7 +365,7 @@ export default {
 @media screen and (min-width: 1440px) {
   .contact {
     &__info {
-      width: 55vw;
+      width: 50vw;
       padding: 0 30px 0 100px;
 
       &__links {
@@ -349,7 +397,7 @@ export default {
 @media screen and (min-width: 2560px) {
   .contact {
     &__info {
-      width: 50vw;
+      width: 45vw;
 
       &__header {
         font-size: 80px;

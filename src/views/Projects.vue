@@ -1,6 +1,7 @@
 <template>
   <div class="projectWrapper">
-    <h2 class="header">Projekty</h2>
+    <h2 class="header" v-if="isPolishLanguage()">Projekty</h2>
+    <h2 class="header" v-else>Projects</h2>
 
     <div class="projects" :style="getGridColumnsCount()">
       <div
@@ -165,9 +166,14 @@ export default {
         content: "";
         height: 100%;
         width: 100%;
-        background: rgba(255, 255, 255, 0.01);
         box-shadow: inset 0px 0px 50px #ffffff;
-        backdrop-filter: blur(20px);
+        @supports (backdrop-filter: blur(20px)) {
+          background: rgba(255, 255, 255, 0.01);
+          backdrop-filter: blur(20px);
+          filter: none;
+        }
+        background: rgba(255, 255, 255, 0.4);
+        filter: blur(5px);
         border-radius: 50%;
         z-index: -1;
       }
@@ -219,6 +225,7 @@ export default {
       &__content {
         margin-top: 10px;
         text-align: center;
+        height: 100%;
 
         &::v-deep &__list {
           list-style: circle;
