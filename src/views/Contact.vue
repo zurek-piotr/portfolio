@@ -23,11 +23,14 @@
           >
           <a
             class="contact__info__links__link contact__info__links__link--email"
-            href="mailto:piotrzurek97@gmail.com"
+            href="mailto:kontakt@zurekpiotr.pl"
             ><div class="button email"></div>
-            piotrzurek97@gmail.com</a
+            kontakt@zurekpiotr.pl</a
           >
-          <a class="contact__info__links__link" target="_blank" href="https://www.linkedin.com/in/piotr-%C5%BCurek-77bb29196/"
+          <a
+            class="contact__info__links__link"
+            target="_blank"
+            href="https://www.linkedin.com/in/piotr-%C5%BCurek-77bb29196/"
             ><div class="button linkedin"></div
           ></a>
         </div>
