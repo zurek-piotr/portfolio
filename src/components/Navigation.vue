@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation" v-if="isPolishLanguage()">
+  <nav class="navigation" v-if="isPolishLanguage()">
     <router-link
       to="/#about"
       @click.native="scrollTo('#about')"
@@ -18,9 +18,9 @@
       class="navigation__link"
       >Kontakt</router-link
     >
-  </div>
+  </nav>
 
-  <div class="navigation" v-else>
+  <nav class="navigation" v-else>
     <router-link
       to="/#about"
       @click.native="scrollTo('#about')"
@@ -39,7 +39,7 @@
       class="navigation__link"
       >Contact</router-link
     >
-  </div>
+  </nav>
 </template>
 
 <script>

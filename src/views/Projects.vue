@@ -1,5 +1,5 @@
 <template>
-  <div class="projectWrapper">
+  <section class="projectWrapper">
     <h2 class="header" v-if="isPolishLanguage()">Projekty</h2>
     <h2 class="header" v-else>Projects</h2>
 
@@ -81,7 +81,7 @@
         </transition>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -272,6 +272,7 @@ export default {
 
           &__element {
             margin: 15px 0;
+            text-align: left;
           }
         }
       }

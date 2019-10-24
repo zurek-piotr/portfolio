@@ -1,5 +1,5 @@
 <template>
-  <div class="contactWrapper">
+  <section class="contactWrapper">
     <div class="contact">
       <div class="contact__info">
         <template v-if="isPolishLanguage()">
@@ -113,7 +113,7 @@
       </div>
     </div>
     <Footer />
-  </div>
+  </section>
 </template>
 
 <script>
@@ -173,6 +173,7 @@ export default {
   min-height: 100vh;
   width: 100%;
   padding-top: 10vh;
+  overflow-x: hidden;
 
   &__info {
     width: 80vw;

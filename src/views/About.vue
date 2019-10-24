@@ -1,5 +1,5 @@
 <template>
-  <div class="aboutWrapper">
+  <section class="aboutWrapper">
     <div class="me"></div>
     <div class="about" v-if="isPolishLanguage()">
       <h2 class="about__header">Cześć!</h2>
@@ -26,7 +26,7 @@
       </p>
       <span class="about__programming">Programming</span>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

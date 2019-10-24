@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <Navigation v-show="screenWidth >= 1024" />
 
     <div class="heroSection">
@@ -26,7 +26,7 @@
       </div>
       <div class="heroSection__logo"></div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -97,11 +97,12 @@ $headerFontSize: 72px;
   }
 
   &__hamburgerMenu {
-    position: fixed;
+    position: absolute;
     display: block;
     background: white;
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
 
     &__button {
       position: absolute;
