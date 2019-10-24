@@ -27,7 +27,7 @@
             ><div class="button email"></div>
             piotrzurek97@gmail.com</a
           >
-          <a class="contact__info__links__link" target="_blank" href="#"
+          <a class="contact__info__links__link" target="_blank" href="https://www.linkedin.com/in/piotr-%C5%BCurek-77bb29196/"
             ><div class="button linkedin"></div
           ></a>
         </div>
