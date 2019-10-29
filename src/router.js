@@ -9,35 +9,41 @@ export default new Router({
     console.log(to, from);
     window.history.pushState('', '', '/');
   },
-  routes: [{
-    path: '/',
-  },
-  {
-    path: '/about',
-    redirect: '/#about',
-  },
-  {
-    path: '/omnie',
-    redirect: '/#about',
-  }, {
-    path: '/o-mnie',
-    redirect: '/#about',
-  },
-  {
-    path: '/projects',
-    redirect: '/#projects',
-  },
-  {
-    path: '/projekty',
-    redirect: '/#projects',
-  },
-  {
-    path: '/contact',
-    redirect: '/#contact',
-  },
-  {
-    path: '/kontakt',
-    redirect: '/#contact',
-  },
+  routes: [
+    {
+      path: '/',
+    },
+    {
+      path: '/about',
+      redirect: '/#about',
+    },
+    {
+      path: '/omnie',
+      redirect: '/#about',
+    },
+    {
+      path: '/o-mnie',
+      redirect: '/#about',
+    },
+    {
+      path: '/projects',
+      redirect: '/#projects',
+    },
+    {
+      path: '/projekty',
+      redirect: '/#projects',
+    },
+    {
+      path: '/contact',
+      redirect: '/#contact',
+    },
+    {
+      path: '/kontakt',
+      redirect: '/#contact',
+    },
+    {
+      path: '/videoplayer',
+      redirect: '/videoplayer/',
+    },
   ],
 });

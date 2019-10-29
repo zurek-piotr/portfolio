@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="footer__logo"></div>
-    <span class="footer__info">©{{ data }} Piotr Żurek.</span>
+    <span class="footer__info">©{{ data }} Piotr Żurek</span>
   </footer>
 </template>
 
