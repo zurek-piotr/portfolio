@@ -44,6 +44,26 @@
     ]
   },
   {
+    "logo": "niebodowynajecia",
+    "title": "Niebo Do Wynjaęcia",
+    "description": {
+      "pl": "Mobilne planetarium, pokazy astronomiczne i lekcje astronomii.",
+      "en": "Mobile planetarium, astronomical shows and astronomy lessons."
+    },
+    "skills": {
+      "isVisible": false,
+      "pl": "<h2>Wykorzystane umiejętności:</h2><br/><ul class='projects__project__skillsWrapper__content__list'><li class='projects__project__skillsWrapper__content__list__element'>WordPress</li><li class='projects__project__skillsWrapper__content__list__element'>Yoast SEO</li><li class='projects__project__skillsWrapper__content__list__element'>Google Analytics</li><li class='projects__project__skillsWrapper__content__list__element'>Google Search Console</li><li class='projects__project__skillsWrapper__content__list__element'>Google My Business</li><li class='projects__project__skillsWrapper__content__list__element'>CSS</li><li class='projects__project__skillsWrapper__content__list__element'>Semantyczny kod HTML5 sprzyjający SEO (np. tag address)</li></ul>",
+
+      "en": "<h2>Used skills:</h2><br/><ul class='projects__project__skillsWrapper__content__list'><li class='projects__project__skillsWrapper__content__list__element'>WordPress</li><li class='projects__project__skillsWrapper__content__list__element'>Yoast SEO</li><li class='projects__project__skillsWrapper__content__list__element'>Google Analytics</li><li class='projects__project__skillsWrapper__content__list__element'>Google Search Console</li><li class='projects__project__skillsWrapper__content__list__element'>Google My Business</li><li class='projects__project__skillsWrapper__content__list__element'>CSS</li><li class='projects__project__skillsWrapper__content__list__element'>Semantic HTML5 code friendly to SEO (e.g., address tag)</li></ul>"
+    },
+    "buttons": [
+      {
+        "name": "link",
+        "link": "https://niebo-do-wynajecia.pl"
+      }
+    ]
+  },
+  {
     "logo": "logo",
     "title": "Portfolio",
     "description": {

@@ -30,7 +30,7 @@
           <a
             class="contact__info__links__link"
             target="_blank"
-            href="https://www.linkedin.com/in/piotr-%C5%BCurek-77bb29196/"
+            href="https://www.linkedin.com/in/zurek-piotr/"
             ><div class="button linkedin"></div
           ></a>
         </div>
