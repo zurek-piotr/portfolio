@@ -4,29 +4,35 @@
       <div class="contact__info">
         <template v-if="isPolishLanguage()">
           <h2 class="contact__info__header">Kontakt</h2>
+
           <div class="contact__info__description">
             Jeżeli jesteś zainteresowany współpracą ze mną, zapraszam do
             kontaktu.
           </div>
         </template>
+
         <template v-else>
           <h2 class="contact__info__header">Contact</h2>
+
           <div class="contact__info__description">
             Have a cool project in mind, and think I can help you with it? Feel
             free to contact me.
           </div>
         </template>
+
         <div class="contact__info__links">
           <a class="contact__info__links__link" href="tel:+48502344491"
             ><div class="button phone"></div>
             502344491</a
           >
+
           <a
             class="contact__info__links__link contact__info__links__link--email"
             href="mailto:kontakt@zurekpiotr.pl"
             ><div class="button email"></div>
             kontakt@zurekpiotr.pl</a
           >
+
           <a
             class="contact__info__links__link"
             target="_blank"
@@ -35,6 +41,7 @@
           ></a>
         </div>
       </div>
+
       <div class="contact__form">
         <form
           class="gform"
@@ -50,17 +57,41 @@
               type="email"
               v-model="email"
               placeholder="Adres email"
+              @input="$v.email.$touch()"
               required
             />
+
+            <transition name="fade">
+              <p
+                class="gform__hint"
+                v-show="$v.email.$dirty && $v.email.$invalid"
+              >
+                Wprowadź poprawny email 😊
+              </p>
+            </transition>
+
             <textarea
               id="message"
               class="gform__message"
               name="message"
               v-model="message"
               placeholder="Jak mogę Ci pomóc?"
+              @input="$v.message.$touch()"
               required
             ></textarea>
-            <button class="gform__send" type="submit">Wyślij</button>
+
+            <transition name="fade">
+              <p
+                class="gform__hint"
+                v-show="$v.message.$dirty && $v.message.$invalid"
+              >
+                Nie zostawiaj pustego, napisz do mnie chociaż z dwa słowa 😊
+              </p>
+            </transition>
+
+            <button class="gform__send" type="submit" :disabled="$v.$invalid">
+              Wyślij
+            </button>
           </template>
 
           <template v-else>
@@ -71,25 +102,52 @@
               type="email"
               v-model="email"
               placeholder="Email address"
+              @input="$v.email.$touch()"
               required
             />
+
+            <transition name="fade">
+              <p
+                class="gform__hint"
+                v-show="$v.email.$dirty && $v.email.$invalid"
+              >
+                Input correct email 😊
+              </p>
+            </transition>
+
             <textarea
               id="message"
               class="gform__message"
               name="message"
               v-model="message"
               placeholder="How can I help you?"
+              @input="$v.message.$touch()"
               required
             ></textarea>
-            <button class="gform__send" type="submit">Send</button>
+
+            <transition name="fade">
+              <p
+                class="gform__hint"
+                v-show="$v.message.$dirty && $v.message.$invalid"
+              >
+                Don't leave it empty, send me a few words 😊
+              </p>
+            </transition>
+
+            <button class="gform__send" type="submit" :disabled="$v.$invalid">
+              Send
+            </button>
           </template>
         </form>
+
         <div
           class="contact__form__message"
           v-show="visibleMessage"
           v-if="isPolishLanguage()"
         >
-          <h2 class="contact__form__message__header">Dziękuje za kontakt 😊</h2>
+          <h2 class="contact__form__message__header">
+            Dziękuje za kontakt 😊
+          </h2>
           <br />
           <button
             class="gform__send gform__send--message"
@@ -98,6 +156,7 @@
             Wyślij kolejną wiadomość
           </button>
         </div>
+
         <div class="contact__form__message" v-show="visibleMessage" v-else>
           <h2 class="contact__form__message__header">
             Thank you for contact 😊
@@ -112,11 +171,14 @@
         </div>
       </div>
     </div>
+
     <Footer />
   </section>
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate';
+import { required, minLength, email } from 'vuelidate/lib/validators';
 import isPolishLanguage from '../scripts/Helpers';
 import Footer from './Footer.vue';
 
@@ -130,6 +192,17 @@ export default {
       API:
         'https://script.google.com/macros/s/AKfycbxMoGepI836k8LmXrrmiqRjsQQNxrdQDHA63Ni1uA/exec',
     };
+  },
+  mixins: [validationMixin],
+  validations: {
+    email: {
+      required,
+      email,
+    },
+    message: {
+      required,
+      minLength: minLength(4),
+    },
   },
   methods: {
     isPolishLanguage,
@@ -318,6 +391,11 @@ export default {
     height: 350px;
     resize: none;
   }
+  &__hint {
+    font-size: 16px;
+    color: red;
+    margin: 0 10px;
+  }
 
   &__send {
     height: 40px;
@@ -342,6 +420,14 @@ export default {
     width: 80%;
     height: 80px;
   }
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 @media screen and (min-width: 375px) {
   .contact__info__links__link--email {
