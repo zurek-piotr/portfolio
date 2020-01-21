@@ -55,10 +55,9 @@ export default {
     window.addEventListener('resize', this.setScreenWidth);
   },
 };
-
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss" scoped>
 $headerFontSize: 72px;
 .heroSection {
   display: flex;
@@ -68,13 +67,6 @@ $headerFontSize: 72px;
   min-height: 100vh;
   max-width: 100vw;
   background: $primary-color;
-
-  &__logo {
-    background: url(../assets/projectsSrc/logo.svg) center/contain no-repeat;
-    height: 45vh;
-    width: 55vw;
-    order: 1;
-  }
 
   &__textWrapper {
     flex-direction: column;
@@ -94,6 +86,13 @@ $headerFontSize: 72px;
       font-size: 24px;
       font-weight: 300;
     }
+  }
+
+  &__logo {
+    background: url(../assets/projectsSrc/logo.svg) center/contain no-repeat;
+    height: 45vh;
+    width: 55vw;
+    order: 1;
   }
 
   &__hamburgerMenu {
@@ -131,7 +130,7 @@ $headerFontSize: 72px;
 
       &::before {
         position: absolute;
-        content: "";
+        content: '';
         top: -7px;
         left: 0;
         will-change: transform;
@@ -140,7 +139,7 @@ $headerFontSize: 72px;
 
       &::after {
         position: absolute;
-        content: "";
+        content: '';
         top: 7px;
         left: 0;
         opacity: 1;
@@ -208,7 +207,7 @@ $headerFontSize: 72px;
       order: 2;
 
       &:before {
-        content: "";
+        content: '';
         position: absolute;
         background: $primary-color;
         top: 0;

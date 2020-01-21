@@ -127,7 +127,8 @@ export default {
       visibleMessage: false,
       message: '',
       email: '',
-      API: 'https://script.google.com/macros/s/AKfycbxMoGepI836k8LmXrrmiqRjsQQNxrdQDHA63Ni1uA/exec',
+      API:
+        'https://script.google.com/macros/s/AKfycbxMoGepI836k8LmXrrmiqRjsQQNxrdQDHA63Ni1uA/exec',
     };
   },
   methods: {
@@ -137,11 +138,16 @@ export default {
       formData.set('email', this.email);
       formData.set('message', this.message);
 
-      const config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
+      const config = {
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      };
 
-      this.axios.post(this.API, formData, config)
+      this.axios
+        .post(this.API, formData, config)
         .then(this.showSuccessMessage())
-        .catch(err => console.error(err));
+        .catch((err) => {
+          console.error(err);
+        });
     },
     showSuccessMessage() {
       this.message = '';
@@ -157,10 +163,9 @@ export default {
     Footer,
   },
 };
-
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss" scoped>
 .contactWrapper {
   background: $solid-color;
 }
@@ -266,7 +271,7 @@ export default {
   &.linkedin {
     background-image: url(../assets/contactSrc/linkedinIcon.svg);
     &::after {
-      content: "LinkedIn";
+      content: 'LinkedIn';
       font-size: 24px;
       left: calc(100% + 25px);
     }

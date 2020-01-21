@@ -33,14 +33,13 @@
 import isPolishLanguage from '../scripts/Helpers';
 
 export default {
-
   methods: {
     isPolishLanguage,
   },
 };
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss" scoped>
 .aboutWrapper {
   display: flex;
   flex-direction: column;
@@ -75,10 +74,9 @@ export default {
     margin-top: 50px;
     font-size: 28px;
     font-weight: bold;
-    align-self: center;
 
     &::after {
-      content: " ❤";
+      content: ' ❤';
       color: red;
     }
   }
@@ -93,7 +91,7 @@ export default {
   order: 2;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     background: $primary-color;
     height: 230px;
@@ -107,7 +105,7 @@ export default {
   }
   &::after {
     position: absolute;
-    content: "";
+    content: '';
     background: url(../assets/patterns/dots.svg);
     height: 240px;
     width: 240px;
@@ -121,7 +119,7 @@ export default {
 @media screen and (min-width: 768px) {
   .about {
     &__programming {
-      font-size: 36px;
+      font-size: 40px;
     }
   }
   .me {
@@ -186,9 +184,6 @@ export default {
     }
     &__description {
       font-size: 28px;
-    }
-    &__programming {
-      font-size: 36px;
     }
   }
 }

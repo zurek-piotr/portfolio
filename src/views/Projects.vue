@@ -15,7 +15,7 @@
             backgroundImage:
               'url(' +
               require('../assets/projectsSrc/' + project.logo + '.svg') +
-              ')'
+              ')',
           }"
         ></div>
 
@@ -47,7 +47,7 @@
           <div
             :class="[
               'projects__project__skillsWrapper',
-              { open: project.skills.isVisible }
+              { open: project.skills.isVisible },
             ]"
             v-show="project.skills.isVisible"
             v-if="isPolishLanguage()"
@@ -64,7 +64,7 @@
           <div
             :class="[
               'projects__project__skillsWrapper',
-              { open: project.skills.isVisible }
+              { open: project.skills.isVisible },
             ]"
             v-show="project.skills.isVisible"
             v-else
@@ -112,10 +112,9 @@ export default {
     window.addEventListener('resize', this.getGridColumnsCount);
   },
 };
-
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss" scoped>
 .projectWrapper {
   display: flex;
   flex-direction: column;
@@ -154,7 +153,7 @@ export default {
 
       &::before {
         position: absolute;
-        content: "";
+        content: '';
         height: 0;
         width: 0;
         bottom: 0;
@@ -167,7 +166,7 @@ export default {
 
       &::after {
         position: absolute;
-        content: "";
+        content: '';
         height: 100%;
         width: 100%;
         box-shadow: inset 0px 0px 50px #ffffff;
@@ -232,7 +231,7 @@ export default {
 
       &::before {
         position: absolute;
-        content: "";
+        content: '';
         background: url(../assets/patterns/stripes.svg);
         height: 100%;
         width: 100%;
@@ -289,7 +288,7 @@ export default {
         &::before,
         &::after {
           position: absolute;
-          content: "";
+          content: '';
           height: 5px;
           width: 25px;
           background: black;
@@ -326,7 +325,7 @@ export default {
     background-image: url(../assets/projectsSrc/github_logo.svg);
 
     &::after {
-      content: "Source";
+      content: 'Source';
     }
   }
 
@@ -334,7 +333,7 @@ export default {
     background-image: url(../assets/projectsSrc/webIcon.svg);
 
     &::after {
-      content: "Link";
+      content: 'Link';
     }
   }
 
@@ -343,7 +342,7 @@ export default {
     margin: 0 25px;
 
     &::after {
-      content: "Skills";
+      content: 'Skills';
     }
   }
 }
