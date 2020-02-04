@@ -46,7 +46,6 @@
 import isPolishLanguage from '../scripts/Helpers';
 
 export default {
-
   data() {
     return {
       isOpen: false,
@@ -56,7 +55,9 @@ export default {
     isPolishLanguage,
     scrollTo(hashSelector) {
       this.$emit('changeIsOpen', false);
-      setTimeout(() => { window.location.href = hashSelector; }, 1);
+      setTimeout(() => {
+        window.location.href = hashSelector;
+      }, 1);
     },
   },
   mounted() {
@@ -67,8 +68,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss" scoped>
 .navigation {
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,9 +78,9 @@ export default {
   text-align: center;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 
   &__link {
-    //width: 100%;
     margin-top: 25px;
     font-size: 28px;
     font-weight: 400;

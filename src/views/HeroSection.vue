@@ -1,31 +1,31 @@
 <template>
-  <section>
-    <Navigation v-show="screenWidth >= 1024" />
+  <section class="heroSection">
+    <button
+      class="heroSection__hamburgerMenu__button"
+      @click="isOpen = !isOpen"
+      v-show="screenWidth < 1024"
+    >
+      <div
+        :class="['heroSection__hamburgerMenu__inner', { open: isOpen }]"
+      ></div>
+    </button>
 
-    <div class="heroSection">
-      <button
-        class="heroSection__hamburgerMenu__button"
-        @click="isOpen = !isOpen"
-        v-show="screenWidth < 1024"
-      >
-        <div
-          :class="['heroSection__hamburgerMenu__inner', { open: isOpen }]"
-        ></div>
-      </button>
-      <transition name="slide">
-        <div class="heroSection__hamburgerMenu" v-show="isOpen">
-          <Navigation @changeIsOpen="toggleIsOpen" />
-        </div>
-      </transition>
-      <div class="heroSection__textWrapper">
-        <h1 class="heroSection__textWrapper__header">
-          Piotr
-          <br />Żurek
-        </h1>
-        <p class="heroSection__textWrapper__subheader">{{ subheader }}</p>
+    <Navigation v-if="screenWidth >= 1024" />
+    <transition name="slide" v-else>
+      <div class="heroSection__hamburgerMenu" v-show="isOpen">
+        <Navigation @changeIsOpen="toggleIsOpen" />
       </div>
-      <div class="heroSection__logo"></div>
+    </transition>
+
+    <div class="heroSection__textWrapper">
+      <h1 class="heroSection__textWrapper__header">
+        Piotr
+        <br />Żurek
+      </h1>
+      <p class="heroSection__textWrapper__subheader">{{ subheader }}</p>
     </div>
+
+    <div class="heroSection__logo"></div>
   </section>
 </template>
 
@@ -42,6 +42,15 @@ export default {
   },
   components: {
     Navigation,
+  },
+  watch: {
+    isOpen(newValue) {
+      if (newValue === true) {
+        document.querySelector('body').style.overflow = 'hidden';
+      } else {
+        document.querySelector('body').style.overflow = '';
+      }
+    },
   },
   methods: {
     setScreenWidth() {
@@ -96,12 +105,12 @@ $headerFontSize: 72px;
   }
 
   &__hamburgerMenu {
-    position: absolute;
     display: block;
+    position: fixed;
     background: white;
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
+    z-index: 99998;
 
     &__button {
       position: absolute;
@@ -111,13 +120,15 @@ $headerFontSize: 72px;
       border: none;
       background: none;
       cursor: pointer;
-      z-index: 2;
+      z-index: 99999;
     }
 
     &__inner {
       position: relative;
       will-change: transform;
       transition: transform 0.5s;
+
+      overflow: visible;
 
       &,
       &::before,
@@ -133,7 +144,6 @@ $headerFontSize: 72px;
         content: '';
         top: -7px;
         left: 0;
-        will-change: transform;
         transition: transform 0.5s;
       }
 
@@ -142,21 +152,21 @@ $headerFontSize: 72px;
         content: '';
         top: 7px;
         left: 0;
-        opacity: 1;
-        will-change: transform;
-        transition: transform 0.3s, opacity 0.3s;
+        transition: transform 0.3s;
       }
 
       &.open {
+        will-change: transform;
         transform: rotate(45deg);
 
         &::before {
+          will-change: transform;
           transform: translateY(7px) rotate(90deg);
         }
 
         &::after {
+          will-change: transform, opacity;
           transform: translateY(-7px);
-          opacity: 0;
         }
       }
     }
@@ -213,8 +223,8 @@ $headerFontSize: 72px;
         top: 0;
         right: 0;
         height: 100vh;
-        width: 65vw;
-        clip-path: circle(72.7% at 73% 21%);
+        width: 100vw;
+        clip-path: circle(75vh at 75vw 22vh);
         z-index: -1;
       }
     }
@@ -238,7 +248,7 @@ $headerFontSize: 72px;
       width: 30vw;
 
       &::before {
-        clip-path: circle(67.7% at 65% 16%);
+        clip-path: circle(81vh at 71vw 18vh);
       }
     }
   }
@@ -265,7 +275,7 @@ $headerFontSize: 72px;
       width: 30vw;
 
       &::before {
-        clip-path: circle(67.7% at 65% 20%);
+        clip-path: circle(81vh at 71vw 18vh);
       }
     }
   }
