@@ -6,7 +6,6 @@ Vue.use(Router);
 export default new Router({
   mode: 'history',
   afterEach(to, from) {
-    console.log(to, from);
     window.history.pushState('', '', '/');
   },
   routes: [
