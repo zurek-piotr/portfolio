@@ -4,12 +4,13 @@
 
     <div class="projects" :style="getGridColumnsCount()">
       <div class="projects__project" v-for="project in projectData" :key="project.title">
-        <div
-          class="projects__project__logo"
-        >
-          <img class="projects__project__logo__img"  :src="getImageUrl(project.logo)" alt="project logo"/>
+        <div class="projects__project__logo">
+          <img
+            class="projects__project__logo__img"
+            :src="getImageUrl(project.logo)"
+            alt="project logo"
+          />
         </div>
-
 
         <div class="projects__project__title">{{ project.title }}</div>
 
@@ -151,7 +152,7 @@ export default {
       border: 1px dotted;
       border-radius: 50%;
 
-      &__img{
+      &__img {
         height: 70%;
         width: 70%;
         position: absolute;

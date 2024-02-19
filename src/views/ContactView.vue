@@ -28,8 +28,8 @@
 
           <a
             class="contact__info__links__link"
-            target="_blank"
             href="https://www.linkedin.com/in/zurek-piotr/"
+            target="_blank"
           >
             <div class="button linkedin"></div>
           </a>
@@ -37,13 +37,13 @@
       </div>
 
       <div class="contact__form">
-        <form class="gform" @submit.prevent="onSubmit" method="POST" v-show="visibleForm">
+        <form v-show="visibleForm" class="gform" method="POST" @submit.prevent="onSubmit">
           <input
             id="email"
             v-model="email"
+            :placeholder="$t('Email')"
             class="gform__email"
             name="email"
-            :placeholder="$t('Email')"
             required
             type="email"
             @input="v$.email.$touch()"
@@ -58,9 +58,9 @@
           <textarea
             id="message"
             v-model="message"
+            :placeholder="$t('How can I help you?')"
             class="gform__message"
             name="message"
-            :placeholder="$t('How can I help you?')"
             required
             @input="v$.message.$touch()"
           ></textarea>
@@ -370,6 +370,7 @@ export default {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    width: 100%;
 
     &__info {
       width: 40vw;
@@ -392,7 +393,7 @@ export default {
     }
 
     &__form {
-      width: 60vw;
+      width: 40vw;
       margin-right: 50px;
     }
   }
@@ -419,7 +420,7 @@ export default {
 @media screen and (min-width: 1440px) {
   .contact {
     &__info {
-      width: 50vw;
+      width: 45vw;
       padding: 0 30px 0 100px;
 
       &__links {
@@ -430,7 +431,7 @@ export default {
     }
 
     &__form {
-      width: 45vw;
+      width: 40vw;
       margin-right: 100px;
     }
   }
@@ -450,7 +451,7 @@ export default {
 @media screen and (min-width: 2560px) {
   .contact {
     &__info {
-      width: 45vw;
+      width: 50vw;
 
       &__header {
         font-size: 80px;
@@ -469,7 +470,7 @@ export default {
 
     &__form {
       height: 80vh;
-      width: 40vw;
+      width: 35vw;
       margin-right: 5vw;
     }
   }

@@ -26,7 +26,7 @@ export default {
       setTimeout(() => {
         window.location.href = hashSelector
       }, 1)
-    },
+    }
   },
   mounted() {
     if (this.$route.hash) {
@@ -34,7 +34,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style lang="scss" scoped>

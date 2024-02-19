@@ -43,14 +43,13 @@ export default {
     }
   },
   watch: {
-    '$i18n.locale': 'saveLang',
+    '$i18n.locale': 'saveLang'
   },
   created() {
     if (this.$cookies.isKey('lang')) {
       this.$i18n.locale = this.$cookies.get('lang')
     }
   }
-
 }
 </script>
 
