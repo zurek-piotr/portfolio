@@ -5,9 +5,7 @@
       @click="isOpen = !isOpen"
       v-show="screenWidth < 1024"
     >
-      <div
-        :class="['heroSection__hamburgerMenu__inner', { open: isOpen }]"
-      ></div>
+      <div :class="['heroSection__hamburgerMenu__inner', { open: isOpen }]"></div>
     </button>
 
     <Navigation v-if="screenWidth >= 1024" />
@@ -29,44 +27,46 @@
   </section>
 </template>
 
-<script>
-import Navigation from '../components/Navigation.vue';
+<script lang="ts">
+import Navigation from '../components/NavigationComponent.vue'
 
 export default {
+  components: {
+    Navigation
+  },
   data() {
     return {
-      subheader: '<FrontendDeveloper />',
+      subheader: '<FullStackDeveloper />',
       screenWidth: window.innerWidth,
-      isOpen: false,
-    };
-  },
-  components: {
-    Navigation,
-  },
-  watch: {
-    isOpen(newValue) {
-      if (newValue === true) {
-        document.querySelector('body').style.overflow = 'hidden';
-      } else {
-        document.querySelector('body').style.overflow = '';
-      }
-    },
+      isOpen: false
+    }
   },
   methods: {
     setScreenWidth() {
-      this.screenWidth = window.innerWidth;
+      this.screenWidth = window.innerWidth
     },
-    toggleIsOpen(data) {
-      this.isOpen = data;
-    },
+    toggleIsOpen(data: boolean) {
+      this.isOpen = data
+    }
+  },
+  watch: {
+    isOpen(newValue: boolean) {
+      if (newValue) {
+        document.querySelector('body')!.style.position = 'fixed'
+      } else {
+        document.querySelector('body')!.style.position = ''
+      }
+    }
   },
   mounted() {
-    window.addEventListener('resize', this.setScreenWidth);
-  },
-};
+    window.addEventListener('resize', this.setScreenWidth)
+  }
+}
 </script>
 
 <style lang="scss" scoped>
+@import '../scss/_variables.scss';
+
 $headerFontSize: 72px;
 .heroSection {
   display: flex;
