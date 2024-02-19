@@ -1,7 +1,6 @@
 <template>
   <section class="projectWrapper">
-    <h2 class="header" v-if="isPolishLanguage()">Projekty</h2>
-    <h2 class="header" v-else>Projects</h2>
+    <h2 class="header">{{ $t('Projects') }}</h2>
 
     <div class="projects" :style="getGridColumnsCount()">
       <div
@@ -21,11 +20,8 @@
 
         <div class="projects__project__title">{{ project.title }}</div>
 
-        <div class="projects__project__description" v-if="isPolishLanguage()">
-          {{ project.description.pl }}
-        </div>
-        <div class="projects__project__description" v-else>
-          {{ project.description.en }}
+        <div class="projects__project__description">
+          {{ project.description[$i18n.locale] }}
         </div>
 
         <div class="projects__project__links">
@@ -50,7 +46,6 @@
               { open: project.skills.isVisible },
             ]"
             v-show="project.skills.isVisible"
-            v-if="isPolishLanguage()"
           >
             <div
               class="projects__project__skillsWrapper__closeIcon"
@@ -58,24 +53,7 @@
             ></div>
             <div
               class="projects__project__skillsWrapper__content"
-              v-html="project.skills.pl"
-            ></div>
-          </div>
-          <div
-            :class="[
-              'projects__project__skillsWrapper',
-              { open: project.skills.isVisible },
-            ]"
-            v-show="project.skills.isVisible"
-            v-else
-          >
-            <div
-              class="projects__project__skillsWrapper__closeIcon"
-              @click="project.skills.isVisible = false"
-            ></div>
-            <div
-              class="projects__project__skillsWrapper__content"
-              v-html="project.skills.en"
+              v-html="project.skills[$i18n.locale]"
             ></div>
           </div>
         </transition>
@@ -84,20 +62,16 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
+import {Component, Vue} from 'vue-property-decorator';
 import projectData from '../data/Projects.json';
-import isPolishLanguage from '../scripts/Helpers';
 
-export default {
-  data() {
-    return {
-      projectData,
-      gridColumnsCount: 1,
-    };
-  },
-  methods: {
-    isPolishLanguage,
-    getGridColumnsCount() {
+@Component
+export default class Projects extends Vue {
+  public gridColumnsCount: number = 1;
+  public projectData = projectData;
+
+  getGridColumnsCount() {
       if (window.innerWidth < 768) {
         this.gridColumnsCount = 1;
       } else if (window.innerWidth < 1024 || projectData.length % 2 === 0) {
@@ -106,12 +80,12 @@ export default {
         this.gridColumnsCount = 3;
       }
       return `grid-template-columns: repeat(${this.gridColumnsCount}, 1fr)`;
-    },
-  },
+    }
+
   mounted() {
     window.addEventListener('resize', this.getGridColumnsCount);
-  },
-};
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -169,7 +143,7 @@ export default {
         content: '';
         height: 100%;
         width: 100%;
-        box-shadow: inset 0px 0px 50px #ffffff;
+        box-shadow: inset 0 0 50px #ffffff;
         @supports (backdrop-filter: blur(20px)) {
           background: rgba(255, 255, 255, 0.01);
           backdrop-filter: blur(20px);

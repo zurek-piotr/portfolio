@@ -2,23 +2,15 @@
   <section class="contactWrapper">
     <div class="contact">
       <div class="contact__info">
-        <template v-if="isPolishLanguage()">
-          <h2 class="contact__info__header">Kontakt</h2>
+        <h2 class="contact__info__header">{{ $t('Contact') }}</h2>
 
-          <div class="contact__info__description">
-            Jeżeli jesteś zainteresowany współpracą ze mną, zapraszam do
-            kontaktu.
-          </div>
-        </template>
-
-        <template v-else>
-          <h2 class="contact__info__header">Contact</h2>
-
-          <div class="contact__info__description">
-            Have a cool project in mind, and think I can help you with it? Feel
-            free to contact me.
-          </div>
-        </template>
+        <div class="contact__info__description">
+          {{
+            $t(
+              'Have a cool project in mind, and think I can help you with it? Feel free to contact me',
+            )
+          }}.
+        </div>
 
         <div class="contact__info__links">
           <a class="contact__info__links__link" href="tel:+48502344491"
@@ -49,150 +41,73 @@
           method="POST"
           v-show="visibleForm"
         >
-          <template v-if="isPolishLanguage()">
-            <input
-              id="email"
-              class="gform__email"
-              name="email"
-              type="email"
-              v-model="email"
-              placeholder="Adres email"
-              @input="$v.email.$touch()"
-              required
-            />
+          <input
+            id="email"
+            v-model="email"
+            class="gform__email"
+            name="email"
+            placeholder="Adres email"
+            required
+            type="email"
+            @input="$v.email.$touch()"
+          />
 
-            <transition name="fade">
-              <p
-                class="gform__hint"
-                v-show="$v.email.$dirty && $v.email.$invalid"
-              >
-                Wprowadź poprawny email 😊
-              </p>
-            </transition>
+          <transition name="fade">
+            <p
+              v-show="$v.email.$dirty && $v.email.$invalid"
+              class="gform__hint"
+            >
+              {{ $t('Input correct email') }} 😊
+            </p>
+          </transition>
 
-            <textarea
-              id="message"
-              class="gform__message"
-              name="message"
-              v-model="message"
-              placeholder="Jak mogę Ci pomóc?"
-              @input="$v.message.$touch()"
-              required
-            ></textarea>
+          <textarea
+            id="message"
+            v-model="message"
+            class="gform__message"
+            name="message"
+            placeholder="Jak mogę Ci pomóc?"
+            required
+            @input="$v.message.$touch()"
+          ></textarea>
 
-            <transition name="fade">
-              <p
-                class="gform__hint"
-                v-show="$v.message.$dirty && $v.message.$invalid"
-              >
-                Nie zostawiaj pustego, napisz do mnie chociaż z dwa słowa 😊
-              </p>
-            </transition>
+          <transition name="fade">
+            <p
+              v-show="$v.message.$dirty && $v.message.$invalid"
+              class="gform__hint"
+            >
+              {{ $t("Don't leave it empty, send me a few words") }} 😊
+            </p>
+          </transition>
 
-            <button class="gform__send" type="submit" :disabled="$v.$invalid">
-              Wyślij
-            </button>
-          </template>
-
-          <template v-else>
-            <input
-              id="email"
-              class="gform__email"
-              name="email"
-              type="email"
-              v-model="email"
-              placeholder="Email address"
-              @input="$v.email.$touch()"
-              required
-            />
-
-            <transition name="fade">
-              <p
-                class="gform__hint"
-                v-show="$v.email.$dirty && $v.email.$invalid"
-              >
-                Input correct email 😊
-              </p>
-            </transition>
-
-            <textarea
-              id="message"
-              class="gform__message"
-              name="message"
-              v-model="message"
-              placeholder="How can I help you?"
-              @input="$v.message.$touch()"
-              required
-            ></textarea>
-
-            <transition name="fade">
-              <p
-                class="gform__hint"
-                v-show="$v.message.$dirty && $v.message.$invalid"
-              >
-                Don't leave it empty, send me a few words 😊
-              </p>
-            </transition>
-
-            <button class="gform__send" type="submit" :disabled="$v.$invalid">
-              Send
-            </button>
-          </template>
+          <button :disabled="$v.$invalid" class="gform__send" type="submit">
+            {{ $t('Send') }}
+          </button>
         </form>
 
-        <div
-          class="contact__form__message"
-          v-show="visibleMessage"
-          v-if="isPolishLanguage()"
-        >
+        <div v-show="visibleMessage" class="contact__form__message">
           <h2 class="contact__form__message__header">
-            Dziękuje za kontakt 😊
+            {{ $t('Thank you for contact') }} 😊
           </h2>
           <br />
           <button
             class="gform__send gform__send--message"
             @click="switchVisibility()"
           >
-            Wyślij kolejną wiadomość
-          </button>
-        </div>
-
-        <div class="contact__form__message" v-show="visibleMessage" v-else>
-          <h2 class="contact__form__message__header">
-            Thank you for contact 😊
-          </h2>
-          <br />
-          <button
-            class="gform__send gform__send--message"
-            @click="switchVisibility()"
-          >
-            Send another message
+            {{ $t('Send another message') }}
           </button>
         </div>
       </div>
     </div>
-
-    <Footer />
   </section>
 </template>
 
-<script>
-import { validationMixin } from 'vuelidate';
-import { required, minLength, email } from 'vuelidate/lib/validators';
-import isPolishLanguage from '../scripts/Helpers';
-import Footer from './Footer.vue';
+<script lang="ts">
+import {Component, Vue} from 'vue-property-decorator';
+import {validationMixin} from 'vuelidate';
+import {email, minLength, required} from 'vuelidate/lib/validators';
 
-export default {
-  data() {
-    return {
-      visibleForm: true,
-      visibleMessage: false,
-      message: '',
-      email: '',
-      API:
-        'https://script.google.com/macros/s/AKfycbxMoGepI836k8LmXrrmiqRjsQQNxrdQDHA63Ni1uA/exec',
-    };
-  },
+@Component({
   mixins: [validationMixin],
   validations: {
     email: {
@@ -204,73 +119,79 @@ export default {
       minLength: minLength(4),
     },
   },
-  methods: {
-    isPolishLanguage,
-    onSubmit() {
-      const formData = new FormData();
-      formData.set('email', this.email);
-      formData.set('message', this.message);
+})
+export default class Contact extends Vue {
+  public visibleForm: boolean = true;
+  public visibleMessage: boolean = false;
+  public message: string = '';
+  public email: string = '';
+  public API: string = process.env.EMAIL_API || '';
 
-      const config = {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      };
+  onSubmit() {
+    const formData = new FormData();
+    formData.set('email', this.email);
+    formData.set('message', this.message);
 
-      this.axios
-        .post(this.API, formData, config)
-        .then(this.showSuccessMessage())
-        .catch((err) => {
-          console.error(err);
-        });
-    },
-    showSuccessMessage() {
-      this.message = '';
-      this.email = '';
-      this.switchVisibility();
-    },
-    switchVisibility() {
-      this.visibleForm = !this.visibleForm;
-      this.visibleMessage = !this.visibleMessage;
-    },
-  },
-  components: {
-    Footer,
-  },
-};
+    const config = {
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    };
+
+    this.axios
+      .post(this.API, formData, config)
+      .then(() => this.showSuccessMessage())
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  showSuccessMessage() {
+    this.message = '';
+    this.email = '';
+    this.switchVisibility();
+  }
+
+  switchVisibility() {
+    this.visibleForm = !this.visibleForm;
+    this.visibleMessage = !this.visibleMessage;
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 .contactWrapper {
   background: $solid-color;
-}
-
-.contact {
   display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
+  justify-content: center;
   min-height: 100vh;
   width: 100%;
-  padding-top: 10vh;
   overflow-x: hidden;
+}
+
+.contact {
+
 
   &__info {
     width: 80vw;
-    padding: 80px 70px;
+    padding: 50px 10px;
 
     &__header {
-      font-size: 60px;
-      font-weight: bold;
+      text-transform: uppercase;
       text-align: center;
+      font-size: 48px;
+      font-weight: bold;
     }
 
     &__description {
-      margin-top: 80px;
+      margin-top: 48px;
       font-size: 28px;
       font-weight: 400;
     }
 
     &__links {
-      margin-top: 80px;
+      margin-top: 32px;
       width: auto;
 
       &__link {
@@ -357,11 +278,18 @@ export default {
   justify-content: space-between;
   align-items: center;
 
+  &__email{
+    margin-top: 3em;
+  }
+
+  &__message{
+    margin-top: 2em;
+  }
+
   &__email,
   &__message {
     width: 80%;
     padding: 15px;
-    margin-top: 50px;
     background: $formBackground-color;
     border-bottom: 2px solid black;
     border-style: none none solid none;
@@ -385,7 +313,7 @@ export default {
   }
 
   &__email {
-    height: 35px;
+    height: 3em;
   }
   &__message {
     height: 350px;

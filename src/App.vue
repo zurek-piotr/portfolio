@@ -1,26 +1,31 @@
 <template v-cloak>
-  <div class="sectionsWrapper">
+  <div class="sectionsWrapper" data-app>
     <HeroSection />
     <About id="about" />
     <Projects id="projects" />
     <Contact id="contact" />
+    <Footer id="contact" />
   </div>
 </template>
-
-<script>
+<script lang="ts">
+import Vue from 'vue';
 import HeroSection from './views/HeroSection.vue';
 import About from './views/About.vue';
 import Projects from './views/Projects.vue';
 import Contact from './views/Contact.vue';
+import Footer from './views/Footer.vue';
 
-export default {
+export default Vue.extend({
+  name: 'App',
+
   components: {
     HeroSection,
     About,
     Projects,
     Contact,
+    Footer
   },
-};
+});
 </script>
 
 <style lang="scss">

@@ -29,41 +29,41 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
+import {Component, Vue, Watch} from 'vue-property-decorator';
 import Navigation from '../components/Navigation.vue';
 
-export default {
-  data() {
-    return {
-      subheader: '<FrontendDeveloper />',
-      screenWidth: window.innerWidth,
-      isOpen: false,
-    };
-  },
+@Component({
   components: {
     Navigation,
   },
-  watch: {
-    isOpen(newValue) {
-      if (newValue === true) {
-        document.querySelector('body').style.overflow = 'hidden';
-      } else {
-        document.querySelector('body').style.overflow = '';
-      }
-    },
-  },
-  methods: {
-    setScreenWidth() {
-      this.screenWidth = window.innerWidth;
-    },
-    toggleIsOpen(data) {
-      this.isOpen = data;
-    },
-  },
+})
+export default class HeroSection extends Vue {
+  public subheader: string = '<FullStackDeveloper />';
+  public screenWidth = window.innerWidth;
+  public isOpen: boolean = false;
+
+  setScreenWidth() {
+    this.screenWidth = window.innerWidth;
+  }
+
+  toggleIsOpen(data: boolean) {
+    this.isOpen = data;
+  }
+
+  @Watch('isOpen')
+  onPropertyChanged(newValue: boolean) {
+    if (newValue) {
+      document.querySelector('body')!.style.position = 'fixed';
+    } else {
+      document.querySelector('body')!.style.position = '';
+    }
+  }
+
   mounted() {
     window.addEventListener('resize', this.setScreenWidth);
-  },
-};
+  }
+}
 </script>
 
 <style lang="scss" scoped>

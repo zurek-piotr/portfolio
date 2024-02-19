@@ -1,18 +1,20 @@
 <template>
   <footer class="footer">
     <div class="footer__logo"></div>
-    <span class="footer__info">©{{ data }} Piotr Żurek</span>
+    <span class="footer__info">©{{ date }} Piotr Żurek</span>
   </footer>
 </template>
 
 <script>
-export default {
-  computed: {
-    data() {
+
+import {Component, Vue} from 'vue-property-decorator';
+
+@Component
+export default class Footer extends Vue {
+  get date() {
       return new Date().getFullYear();
-    },
-  },
-};
+    }
+}
 </script>
 
 <style lang="scss" scoped >
@@ -22,6 +24,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding-top: 5vh;
+  background: $solid-color;
 
   &__logo {
     height: 95px;

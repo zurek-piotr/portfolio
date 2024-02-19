@@ -1,42 +1,32 @@
 <template>
   <section class="aboutWrapper">
     <div class="me"></div>
-    <div class="about" v-if="isPolishLanguage()">
-      <h2 class="about__header">Cześć!</h2>
-      <h2 class="about__subheader">Kim jestem?</h2>
+    <div class="about">
+      <h2 class="about__header">{{ $t('Hi') }}!</h2>
+      <h2 class="about__subheader">{{ $t('Who am I') }}?</h2>
       <p class="about__description">
-        można by rzec pełnoprawny informatyk, gdyż sieć, administracja,
-        bezpieczeństwo, helpdesk oraz programowanie nie jest mi obce.
+        {{
+          $t(
+            "I can say that I'm pure IT specialist, because I'm not afraid of networking, administration, servers security, helpdesk and programming",
+          )
+        }}.
         <br />
-        <br />By nie zostać człowiekiem orkiestrą skupiam się na dziedzinie
-        najbliższej mojemu sercu
+        <br />{{
+          $t(
+            'In order not to become a human orchestra, I focus on the area closest to my heart',
+          )
+        }}
       </p>
-      <span class="about__programming">Programowaniu</span>
-    </div>
-
-    <div class="about" v-else>
-      <h2 class="about__header">Hi!</h2>
-      <h2 class="about__subheader">Who am I?</h2>
-      <p class="about__description">
-        I can say that I'm pure IT specialist, because I'm not afraid of
-        networking, administration, servers security, helpdesk and programming.
-        <br />
-        <br />In order not to become a human orchestra, I focus on the area
-        closest to my heart
-      </p>
-      <span class="about__programming">Programming</span>
+      <span class="about__programming">{{ $t('Programming') }}</span>
     </div>
   </section>
 </template>
 
-<script>
-import isPolishLanguage from '../scripts/Helpers';
+<script lang="ts">
+import {Component, Vue} from 'vue-property-decorator';
 
-export default {
-  methods: {
-    isPolishLanguage,
-  },
-};
+@Component
+export default class About extends Vue {}
 </script>
 
 <style lang="scss" scoped>

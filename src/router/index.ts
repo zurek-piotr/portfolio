@@ -1,14 +1,9 @@
-import Vue from 'vue';
-import Router from 'vue-router';
+import Vue from 'vue'
+import VueRouter, {RouteConfig} from 'vue-router'
 
-Vue.use(Router);
+Vue.use(VueRouter)
 
-export default new Router({
-  mode: 'history',
-  afterEach(to, from) {
-    window.history.pushState('', '', '/');
-  },
-  routes: [
+const routes: Array<RouteConfig> = [
     {
       path: '/',
     },
@@ -40,9 +35,12 @@ export default new Router({
       path: '/kontakt',
       redirect: '/#contact',
     },
-    {
-      path: '/videoplayer',
-      redirect: '/videoplayer/',
-    },
-  ],
-});
+  ]
+
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
+})
+
+export default router
