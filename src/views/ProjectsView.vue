@@ -1,31 +1,20 @@
 <template>
   <section class="projectWrapper">
-    <h2 class="header" v-if="isPolishLanguage()">Projekty</h2>
-    <h2 class="header" v-else>Projects</h2>
+    <h2 class="header">{{ $t('Projects') }}</h2>
 
     <div class="projects" :style="getGridColumnsCount()">
-      <div
-        class="projects__project"
-        v-for="project in projectData"
-        :key="project.title"
-      >
+      <div class="projects__project" v-for="project in projectData" :key="project.title">
         <div
           class="projects__project__logo"
           :style="{
-            backgroundImage:
-              'url(' +
-              require('../assets/projectsSrc/' + project.logo + '.svg') +
-              ')',
+            backgroundImage: 'url(' + getImageUrl(project.logo) + ')'
           }"
         ></div>
 
         <div class="projects__project__title">{{ project.title }}</div>
 
-        <div class="projects__project__description" v-if="isPolishLanguage()">
-          {{ project.description.pl }}
-        </div>
-        <div class="projects__project__description" v-else>
-          {{ project.description.en }}
+        <div class="projects__project__description">
+          {{ getDescription(project.description, $i18n.locale === 'pl' ? 'pl' : 'en') }}
         </div>
 
         <div class="projects__project__links">
@@ -38,19 +27,12 @@
           >
             <div class="button" :class="button.name"></div>
           </a>
-          <div
-            class="button skills"
-            @click="project.skills.isVisible = true"
-          ></div>
+          <div class="button skills" @click="project.skills.isVisible = true"></div>
         </div>
         <transition name="projects__project__skillsWrapper">
           <div
-            :class="[
-              'projects__project__skillsWrapper',
-              { open: project.skills.isVisible },
-            ]"
+            :class="['projects__project__skillsWrapper', { open: project.skills.isVisible }]"
             v-show="project.skills.isVisible"
-            v-if="isPolishLanguage()"
           >
             <div
               class="projects__project__skillsWrapper__closeIcon"
@@ -58,24 +40,7 @@
             ></div>
             <div
               class="projects__project__skillsWrapper__content"
-              v-html="project.skills.pl"
-            ></div>
-          </div>
-          <div
-            :class="[
-              'projects__project__skillsWrapper',
-              { open: project.skills.isVisible },
-            ]"
-            v-show="project.skills.isVisible"
-            v-else
-          >
-            <div
-              class="projects__project__skillsWrapper__closeIcon"
-              @click="project.skills.isVisible = false"
-            ></div>
-            <div
-              class="projects__project__skillsWrapper__content"
-              v-html="project.skills.en"
+              v-html="getSkills(project.skills, $i18n.locale === 'pl' ? 'pl' : 'en')"
             ></div>
           </div>
         </transition>
@@ -84,37 +49,70 @@
   </section>
 </template>
 
-<script>
-import projectData from '../data/Projects.json';
-import isPolishLanguage from '../scripts/Helpers';
+<script lang="ts">
+import projectData from '../data/Projects.json'
+
+interface Skills {
+  isVisible: boolean
+  en: string
+  pl: string
+}
+
+interface Description {
+  en: string
+  pl: string
+}
+
+interface Button {
+  name: string
+  link: string
+}
+
+interface Project {
+  logo: string
+  title: string
+  description: Description
+  skills: Skills
+  buttons: Button[]
+}
 
 export default {
   data() {
     return {
-      projectData,
       gridColumnsCount: 1,
-    };
+      projectData: projectData as Project[]
+    }
   },
   methods: {
-    isPolishLanguage,
+    getImageUrl(projectLogo: string) {
+      return new URL(`../assets/projectsSrc/${projectLogo}.svg`, import.meta.url).href
+    },
+    getSkills(skills: Skills, lang: 'pl' | 'en') {
+      return skills?.[lang] || ''
+    },
+    getDescription(description: Description, lang: 'pl' | 'en') {
+      return description?.[lang] || ''
+    },
     getGridColumnsCount() {
       if (window.innerWidth < 768) {
-        this.gridColumnsCount = 1;
+        this.gridColumnsCount = 1
       } else if (window.innerWidth < 1024 || projectData.length % 2 === 0) {
-        this.gridColumnsCount = 2;
+        this.gridColumnsCount = 2
       } else {
-        this.gridColumnsCount = 3;
+        this.gridColumnsCount = 3
       }
-      return `grid-template-columns: repeat(${this.gridColumnsCount}, 1fr)`;
-    },
+      return `grid-template-columns: repeat(${this.gridColumnsCount}, 1fr)`
+    }
   },
   mounted() {
-    window.addEventListener('resize', this.getGridColumnsCount);
-  },
-};
+    window.addEventListener('resize', this.getGridColumnsCount)
+  }
+}
 </script>
 
 <style lang="scss" scoped>
+@import '../scss/_variables.scss';
+
 .projectWrapper {
   display: flex;
   flex-direction: column;
@@ -124,12 +122,14 @@ export default {
   margin-top: 100px;
   min-height: 100vh;
 }
+
 .header {
   text-transform: uppercase;
   text-align: center;
   font-size: 48px;
   font-weight: bold;
 }
+
 .projects {
   display: grid;
   grid-gap: 150px 100px;
@@ -169,7 +169,7 @@ export default {
         content: '';
         height: 100%;
         width: 100%;
-        box-shadow: inset 0px 0px 50px #ffffff;
+        box-shadow: inset 0 0 50px #ffffff;
         @supports (backdrop-filter: blur(20px)) {
           background: rgba(255, 255, 255, 0.01);
           backdrop-filter: blur(20px);
@@ -188,12 +188,14 @@ export default {
       font-weight: bold;
       text-align: center;
     }
+
     &__description {
       margin: 30px 0;
       font-size: 24px;
       font-weight: 400;
       text-align: center;
     }
+
     &__links {
       display: inline-flex;
       justify-content: center;
@@ -204,6 +206,7 @@ export default {
         margin: 0 25px;
       }
     }
+
     &__skillsWrapper {
       position: absolute;
       height: 120%;
@@ -216,6 +219,7 @@ export default {
       &-enter-active {
         animation: show 0.3s;
       }
+
       &-leave-active {
         animation: show 0.3s reverse;
       }
@@ -265,14 +269,13 @@ export default {
         text-align: center;
         height: 100%;
 
-        &::v-deep &__list {
+        :deep(ul) {
           list-style: circle;
           margin: 20px 40px;
-
-          &__element {
-            margin: 15px 0;
-            text-align: left;
-          }
+        }
+        :deep(li) {
+          margin: 15px 0;
+          text-align: left;
         }
       }
 
@@ -294,9 +297,11 @@ export default {
           background: black;
           border-radius: 10px;
         }
+
         &::before {
           transform: rotate(45deg);
         }
+
         &::after {
           transform: rotate(-45deg);
         }
@@ -304,6 +309,7 @@ export default {
     }
   }
 }
+
 .button {
   position: relative;
   background: center/contain no-repeat;

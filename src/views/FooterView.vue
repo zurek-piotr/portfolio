@@ -1,27 +1,31 @@
 <template>
   <footer class="footer">
     <div class="footer__logo"></div>
-    <span class="footer__info">©{{ data }} Piotr Żurek</span>
+    <span class="footer__info">©{{ date }} Piotr Żurek</span>
   </footer>
 </template>
 
-<script>
+<script lang="ts">
+
 export default {
-  computed: {
-    data() {
-      return new Date().getFullYear();
-    },
+  data() {
+    return {
+      date: new Date().getFullYear(),
+    }
   },
-};
+}
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss" scoped>
+@import '../scss/_variables.scss';
+
 .footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: 5vh;
+  background: $solid-color;
 
   &__logo {
     height: 95px;

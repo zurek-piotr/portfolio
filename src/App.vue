@@ -1,30 +1,24 @@
+<script setup lang="ts">
+import HeroSection from './views/HeroSectionView.vue'
+import About from './views/AboutView.vue'
+import Projects from './views/ProjectsView.vue'
+import Contact from './views/ContactView.vue'
+import Footer from './views/FooterView.vue'
+</script>
+
 <template v-cloak>
-  <div class="sectionsWrapper">
+  <div class="sectionsWrapper" data-app>
     <HeroSection />
     <About id="about" />
     <Projects id="projects" />
     <Contact id="contact" />
+    <Footer id="contact" />
   </div>
 </template>
 
-<script>
-import HeroSection from './views/HeroSection.vue';
-import About from './views/About.vue';
-import Projects from './views/Projects.vue';
-import Contact from './views/Contact.vue';
-
-export default {
-  components: {
-    HeroSection,
-    About,
-    Projects,
-    Contact,
-  },
-};
-</script>
-
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700&display=swap');
+@import './scss/_variables.scss';
 
 *,
 *::after,
@@ -58,12 +52,4 @@ button,
 [v-cloak] {
   display: hidden;
 }
-
-// .sectionsWrapper {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   max-width: 80vw;
-//   margin-left: 10vw;
-// }
 </style>
